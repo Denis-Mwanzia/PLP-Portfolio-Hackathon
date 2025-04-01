@@ -1,0 +1,164 @@
+/* Hide hamburger menu by default */
+#hamburger-nav {
+    display: none;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For screen widths up to 1200px (Tablets & Smaller Desktops) */
+@media screen and (max-width: 1200px) {
+
+    /* Hide desktop header */
+    #desktop-header {
+        display: none;
+    }
+
+    /* Show hamburger menu on smaller screens */
+    #hamburger-nav {
+        display: flex;
+    }
+
+    /* Adjust the hero section layout for smaller screens */
+    #home {
+        flex-direction: column;
+        /* Stack items vertically */
+        height: auto;
+        /* Allow height to adjust based on content */
+        padding: 2rem;
+        /* Add padding for spacing */
+    }
+
+    /* Adjust profile image size */
+    .profile-pic-container img {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Adjust title font size */
+    .title {
+        font-size: 2rem;
+    }
+
+    /* Adjust secondary text size */
+    .section-text-p2 {
+        font-size: 1rem;
+    }
+
+    /* Ensure buttons stay side by side */
+    .btn-container {
+        flex-direction: row;
+        /* Align buttons horizontally */
+        flex-wrap: wrap;
+        /* Allow wrapping if space is tight */
+        justify-content: center;
+        /* Center buttons */
+        gap: 1rem;
+        /* Add space between buttons */
+    }
+
+    /* Adjust the menu links for mobile-friendly display */
+    .menu-links {
+        width: 100%;
+        /* Ensure menu takes full width */
+        right: 0;
+        /* Align menu to the right */
+        top: 50px;
+        /* Adjust position */
+    }
+}
+
+/* Further adjustments for tablets and smaller devices (max-width 768px) */
+@media screen and (max-width: 768px) {
+
+    /* Reduce font size for navigation links */
+    .nav-links {
+        font-size: 1.2rem;
+    }
+
+    /* Adjust profile image size */
+    .profile-pic-container img {
+        width: 180px;
+        height: 180px;
+    }
+
+    /* Adjust title font size */
+    .title {
+        font-size: 1.8rem;
+    }
+
+    /* Adjust secondary text font size */
+    .section-text-p2 {
+        font-size: 0.9rem;
+    }
+
+    /* Adjust button size */
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    /* Ensure buttons remain side by side */
+    .btn-container {
+        flex-direction: row;
+        /* Align buttons horizontally */
+        flex-wrap: wrap;
+        /* Allow wrapping if space is tight */
+        justify-content: center;
+        /* Center buttons */
+    }
+
+    /* Adjust icon size for mobile view */
+    .icon {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* Adjustments for mobile devices (max-width 480px) */
+@media screen and (max-width: 480px) {
+
+    /* Reduce logo font size for mobile */
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    /* Adjust profile image size */
+    .profile-pic-container img {
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Adjust title font size */
+    .title {
+        font-size: 1.5rem;
+    }
+
+    /* Adjust secondary text font size */
+    .section-text-p2 {
+        font-size: 0.8rem;
+    }
+
+    /* Adjust button size for small screens */
+    .btn {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.75rem;
+    }
+
+    /* Ensure buttons stay side by side */
+    .btn-container {
+        flex-direction: row;
+        /* Align buttons horizontally */
+        flex-wrap: wrap;
+        /* Allow wrapping if space is tight */
+        justify-content: center;
+        /* Center buttons */
+        gap: 0.5rem;
+        /* Reduce gap between buttons */
+    }
+
+    /* Adjust icon size for mobile view */
+    .icon {
+        width: 20px;
+        height: 20px;
+    }
+}
