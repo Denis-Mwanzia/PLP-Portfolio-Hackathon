@@ -1,0 +1,345 @@
+/* General Setting */
+
+/* Importing Google Fonts for the "Poppins" font family */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+/* Reset default CSS: removes margins, paddings, and applies box-sizing to all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth scroll behavior for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Setting the font family for the body */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Basic styling for paragraphs */
+p {
+    color: #333;
+}
+
+/* General link and button transition for smooth hover effects */
+a,
+.btn {
+    transition: all 300ms ease;
+}
+
+/* Desktop Navigation Styles */
+header,
+.nav-links {
+    display: flex;
+    /* Using flexbox for positioning elements */
+}
+
+header {
+    justify-content: space-around;
+    /* Spacing items equally */
+    align-items: center;
+    /* Vertically aligning content */
+    height: 17vh;
+    /* Setting header height to 17% of the viewport height */
+}
+
+.nav-links {
+    gap: 2rem;
+    /* Spacing between navigation links */
+    list-style: none;
+    /* Removing bullet points from list */
+    font-size: 1.5rem;
+    /* Font size for navigation links */
+}
+
+a {
+    color: #000;
+    /* Default color for links */
+    text-decoration: none;
+    /* Removing underline from links */
+    text-decoration-color: #fff;
+    /* Default decoration color */
+}
+
+a:hover {
+    color: #808080;
+    /* Color change on hover */
+    text-decoration: underline;
+    /* Underline on hover */
+    text-underline-offset: 1rem;
+    /* Space between text and underline */
+    text-decoration-color: #a1a1a1;
+    /* Underline color on hover */
+}
+
+/* Logo Styling */
+.logo {
+    font-size: 2rem;
+    /* Logo font size */
+    font-weight: 700;
+    /* Bold logo font */
+}
+
+.logo:hover {
+    cursor: default;
+    /* Prevents the logo from being clickable */
+}
+
+/* Hamburger Navigation Styles for Mobile View */
+#hamburger-nav {
+    display: flex;
+    justify-content: space-between;
+    /* Space between hamburger icon and logo */
+    align-items: center;
+    /* Centering items vertically */
+    padding: 10px 20px;
+    /* Padding for hamburger nav */
+    width: 100%;
+    /* Full width */
+    position: relative;
+    /* For positioning the menu */
+}
+
+/* Hide the checkbox input for the hamburger menu */
+.menu-checkbox {
+    display: none;
+}
+
+/* Hamburger Icon Styling */
+.hamburger-icon {
+    width: 30px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    /* Stacks the bars vertically */
+    justify-content: space-between;
+    /* Adds space between the bars */
+    cursor: pointer;
+    /* Cursor change to pointer */
+    position: relative;
+    /* Positioned relative to other elements */
+    z-index: 10;
+    /* Ensures the hamburger icon is above other content */
+}
+
+.hamburger-icon span {
+    width: 100%;
+    /* Full width for each span */
+    height: 4px;
+    /* Height of the hamburger bars */
+    background-color: black;
+    /* Black color for the hamburger bars */
+    border-radius: 5px;
+    /* Rounded corners for the bars */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    /* Transition for smooth effect when clicked */
+}
+
+/* Menu Links (Hidden by Default) */
+.menu-links {
+    position: absolute;
+    top: 60px;
+    /* Position the menu below the hamburger icon */
+    right: 0;
+    /* Align to the right side */
+    background-color: white;
+    /* White background for the menu */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow around the menu */
+    width: 200px;
+    /* Width of the menu */
+    max-height: 0;
+    /* Initially hidden */
+    overflow: hidden;
+    /* Hide content that exceeds the max height */
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    /* Smooth transition when opening */
+    border-radius: 8px;
+    /* Rounded corners for the menu */
+    padding: 0;
+    /* No padding initially */
+    text-align: left;
+    /* Left align the text in the menu */
+}
+
+/* Open Menu When Checkbox is Checked (Shows the menu) */
+.menu-checkbox:checked~.menu-links {
+    max-height: 300px;
+    /* Allow the menu to expand */
+    padding: 15px;
+    /* Add padding when the menu opens */
+}
+
+/* Transform Hamburger Icon into "X" when checked */
+.menu-checkbox:checked+.hamburger-icon span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+    /* Rotates and moves the first bar */
+}
+
+.menu-checkbox:checked+.hamburger-icon span:nth-child(2) {
+    opacity: 0;
+    /* Hides the second bar */
+}
+
+.menu-checkbox:checked+.hamburger-icon span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+    /* Rotates and moves the third bar */
+}
+
+/* Improve Menu Spacing */
+.menu-links a {
+    display: block;
+    /* Makes each menu item a block */
+    padding: 10px 15px;
+    /* Adds padding to the menu items */
+    font-size: 16px;
+    /* Font size for menu items */
+    text-decoration: none;
+    /* No underline for menu links */
+    color: black;
+    /* Default color for menu links */
+    transition: background 0.3s;
+    /* Smooth transition for background color */
+    border-radius: 5px;
+    /* Rounded corners for the menu items */
+}
+
+/* Add Hover Effects for Menu Links */
+.menu-links a:hover {
+    background: rgba(0, 0, 0, 0.1);
+    /* Light background on hover */
+}
+
+/* Hero Section Styles */
+#home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    height: 80vh;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Profile Picture Styling */
+.profile-pic-container img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.profile-pic-container img:hover {
+    transform: scale(1.1);
+}
+
+/* Home Content Styling */
+.home-content {
+    max-width: 500px;
+}
+
+.section-text p {
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.section-text-p1 {
+    text-align: center;
+}
+
+.section-text-p2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Title Styling */
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    animation: fadeIn 2s ease-out;
+}
+
+/* Button Container Styling */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    animation: fadeIn 4s ease-out;
+}
+
+/* General Button Styling */
+.btn {
+    font-weight: 600;
+    transition: all 300ms ease;
+    padding: 0.5rem 1rem;
+    width: auto;
+    min-width: 6rem;
+    border-radius: 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* Button Link Styling */
+.btn-container a {
+    text-decoration: none;
+}
+
+/* Color Scheme for Button 1 */
+.btn-color-1 {
+    background: #fff;
+    color: #353535;
+    border: #353535 0.1rem solid;
+}
+
+.btn-color-1:hover {
+    background: #353535;
+    color: #fff;
+}
+
+/* Color Scheme for Button 2 */
+.btn-color-2 {
+    background: #353535;
+    color: #fff;
+    border: #353535 0.1rem solid;
+}
+
+.btn-color-2:hover {
+    background: #fff;
+    color: #353535;
+}
+
+/* Social Media Icons Container */
+#social-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* Icon Styling */
+.icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
+
+/* Animation for Fade-in Effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
