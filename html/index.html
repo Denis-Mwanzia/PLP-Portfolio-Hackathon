@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags for character set, author, description, and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="author" content="Denis Mwanzia">
+    <meta name="description" content="My web based portfolio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to external CSS files for styling -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mediaQuery.css">
+
+    <!-- Link to external javaScript file -->
+    <script src="../javaScript/script.js"></script>
+
+    <title>My Portfolio</title>
+</head>
+
+<body>
+    <!-- HEADER SECTION -->
+
+    <!-- Desktop Navigation Section -->
+    <header id="desktop-header">
+        <!-- Logo for desktop view -->
+        <div class="logo">Denis</div>
+
+        <!-- Desktop navigation menu -->
+        <nav>
+            <ul class="nav-links">
+                <!-- Navigation links for Home, About, Resume, Projects, and Contact -->
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hamburger Navigation for Mobile/Tablet -->
+    <nav id="hamburger-nav">
+        <!-- Checkbox used to toggle the hamburger menu -->
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+
+        <!-- Label for the hamburger icon -->
+        <label for="menu-toggle" class="hamburger-icon">
+            <span></span> <!-- Top bar of the hamburger -->
+            <span></span> <!-- Middle bar of the hamburger -->
+            <span></span> <!-- Bottom bar of the hamburger -->
+        </label>
+
+        <!-- Mobile navigation links (hidden by default) -->
+        <div class="menu-links">
+            <!-- Menu items for the mobile view -->
+            <a href="#home" class="menu-item">Home</a>
+            <a href="#about" class="menu-item">About</a>
+            <a href="#resume" class="menu-item">Resume</a>
+            <a href="#projects" class="menu-item">Projects</a>
+            <a href="#contact" class="menu-item">Contact</a>
+        </div>
+    </nav>
+    <!-- END HEADER SECTION-->
+
+    <!-- MAIN SECTION -->
+
+    <!-- Hero Section -->
+    <section id="home">
+        <!-- Profile Picture Section -->
+        <div class="profile-pic-container">
+            <!-- Profile image (displayed in hero section) -->
+            <img src="../assets/homeImage.jpg" alt="profile picture" />
+        </div>
+
+        <!-- Home Section Content -->
+        <div class="section-text">
+            <!-- Introduction Text -->
+            <p class="section-text-p1">Hello, I'm</p>
+            <h1 class="title">Denis Mwanzia</h1>
+            <p class="section-text-p2">A Full-Stack Web Developer &amp; IT Specialist</p>
+
+            <!-- Action buttons (Download CV and Let's Connect) -->
+            <div class="btn-container">
+                <!-- Button for downloading CV -->
+                <a href="../assets/resume.pdf" class="btn btn-color-1" download>Download CV</a>
+                <!-- Button for contacting via the Contact section -->
+                <a href="#contact" class="btn btn-color-2">Lets Connect</a>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div id="social-container">
+                <!-- LinkedIn profile button -->
+                <a href="https://www.linkedin.com/in/denis-mwanzia" class="social-btn">
+                    <img src="../assets/linkedin.png" alt="LinkedIn profile" class="icon">
+                </a>
+                <!-- GitHub profile button -->
+                <a href="https://github.com/Denis-Mwanzia" class="social-btn">
+                    <img src="../assets/github.png" alt="GitHub profile" class="icon">
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- END Hero Section -->
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-wrapper">
+                <div class="about-title">
+                    <h3>About Me</h3>
+                    <p>What I do</p>
+                </div>
+                <div class="about-section-content">
+                    <div class="about-img">
+                        <img src="../assets/homeImage.jpg" alt="About Photo">
+                    </div>
+                    <div class="about-details">
+                        <div class="about-info">
+                            <h4 class="iam">I am a Full-Stack Web Developer &amp; IT Specialist</h4>
+                            <p>
+                                I am a passionate Full-Stack Web Developer and IT Specialist based in Kenya, with a
+                                Bachelor degree in Information
+                                Technology from Kabarak University. My journey into web development began with a
+                                curiosity for how technology can solve
+                                complex problems and improve lives. I started by developing full-stack web applications
+                                using Django, where I honed my
+                                skills in creating dynamic websites. With Django as my foundation, I gained hands-on
+                                experience with
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END ABOUT SECTION -->
+</body>
+
+</html>
