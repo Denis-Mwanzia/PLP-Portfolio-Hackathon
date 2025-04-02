@@ -1,9 +1,9 @@
+/* Media Queries for Responsiveness */
+
 /* Hide hamburger menu by default */
 #hamburger-nav {
     display: none;
 }
-
-/* Media Queries for Responsiveness */
 
 /* For screen widths up to 1200px (Tablets & Smaller Desktops) */
 @media screen and (max-width: 1200px) {
@@ -21,11 +21,8 @@
     /* Adjust the hero section layout for smaller screens */
     #home {
         flex-direction: column;
-        /* Stack items vertically */
         height: auto;
-        /* Allow height to adjust based on content */
         padding: 2rem;
-        /* Add padding for spacing */
     }
 
     /* Adjust profile image size */
@@ -47,23 +44,48 @@
     /* Ensure buttons stay side by side */
     .btn-container {
         flex-direction: row;
-        /* Align buttons horizontally */
         flex-wrap: wrap;
-        /* Allow wrapping if space is tight */
         justify-content: center;
-        /* Center buttons */
         gap: 1rem;
-        /* Add space between buttons */
     }
 
     /* Adjust the menu links for mobile-friendly display */
     .menu-links {
         width: 100%;
-        /* Ensure menu takes full width */
         right: 0;
-        /* Align menu to the right */
         top: 50px;
-        /* Adjust position */
+    }
+
+    /* Adjust about section content */
+    .about-section-content {
+        flex-direction: column;
+        text-align: center;
+        row-gap: 2rem;
+    }
+
+    .about-img {
+        width: 80%;
+    }
+
+    .about-details {
+        width: 100%;
+    }
+
+    /* Adjust .about-info for smaller screens */
+    .about-info {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .about-info .iam {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .about-info .about-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 1rem;
     }
 }
 
@@ -100,17 +122,31 @@
     /* Ensure buttons remain side by side */
     .btn-container {
         flex-direction: row;
-        /* Align buttons horizontally */
         flex-wrap: wrap;
-        /* Allow wrapping if space is tight */
         justify-content: center;
-        /* Center buttons */
     }
 
     /* Adjust icon size for mobile view */
     .icon {
         width: 25px;
         height: 25px;
+    }
+
+    /* Adjust .about-info for smaller screens */
+    .about-info {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .about-info .iam {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .about-info .about-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        padding: 0 1rem;
     }
 }
 
@@ -147,18 +183,31 @@
     /* Ensure buttons stay side by side */
     .btn-container {
         flex-direction: row;
-        /* Align buttons horizontally */
         flex-wrap: wrap;
-        /* Allow wrapping if space is tight */
         justify-content: center;
-        /* Center buttons */
         gap: 0.5rem;
-        /* Reduce gap between buttons */
     }
 
     /* Adjust icon size for mobile view */
     .icon {
         width: 20px;
         height: 20px;
+    }
+
+    /* Adjust .about-info for mobile screens */
+    .about-info {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .about-info .iam {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .about-info .about-description {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        padding: 0 0.5rem;
     }
 }
