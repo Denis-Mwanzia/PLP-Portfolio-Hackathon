@@ -9,3 +9,21 @@ window.onload = function () {
     });
   });
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+  const reveals = document.querySelectorAll('.reveal');
+
+  function revealElements() {
+    reveals.forEach((element) => {
+      const elementTop = element.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+
+      if (elementTop < windowHeight - 50) {
+        element.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealElements);
+  revealElements(); // Initial check in case elements are already in view
+});
