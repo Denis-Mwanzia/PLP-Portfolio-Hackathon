@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mediaQuery.css">
 
+    <!-- Remix Icon CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
     <!-- Link to external JavaScript file (with 'defer' to ensure it runs after HTML is parsed) -->
     <script src="../javaScript/script.js" defer></script>
 
@@ -111,65 +114,48 @@
                 <!-- Section Title -->
                 <div class="section-title about-title">
                     <h3>About Me</h3>
-                    <p>Who I am and What I do</p>
+                    <p class="sub-title">Who I am and what I do</p>
                 </div>
+
                 <div class="about-section-content">
+                    <!-- Profile image in the About section -->
                     <div class="about-img">
-                        <!-- Profile image in the About section -->
-                        <img src="../assets/about.svg" alt="Denis Mwanzia portrait">
+                        <img src="../assets/about.PNG" alt="Denis Mwanzia portrait">
                     </div>
+
+                    <!-- About details -->
                     <div class="about-details">
                         <div class="about-info">
-                            <h4 class="iam">I am a Full-Stack Web Developer &amp; IT Specialist</h4>
-                            <!-- Description about who you are and what you do -->
-                            <p class="about-description">
+                            <h4 class="iam reveal">Who I Am</h4>
+                            <p class="about-description reveal">
                                 I am a dedicated <strong>Full-Stack Web Developer &amp; IT Specialist</strong> based in
-                                Kenya, with a
-                                <strong>Bachelor’s degree in Information Technology</strong> from Kabarak University. My
-                                journey into web
-                                development
-                                began with a simple idea: using technology to solve real-world challenges and create
-                                seamless digital experiences.
+                                Kenya,
+                                with a <strong>Bachelor’s degree in Information Technology</strong> from Kabarak
+                                University.
+                                My journey into web development began with a passion for solving real-world challenges
+                                through technology.
                             </p>
 
-                            <p class="about-description">
-                                I started my career building <strong>dynamic full-stack web applications with Django
-                                </strong>, where
-                                I mastered
-                                <strong>HTML for structuring content, CSS for styling, Tailwind for modern UI design,
-                                    and JavaScript/jQuery</strong>
-                                for interactivity.
-                                This foundation allowed me to craft user-centric websites with a balance of
-                                functionality and aesthetics.
+                            <h4 class="iam reveal">What I Do</h4>
+                            <p class="about-description reveal">
+                                I started my career building <strong>dynamic full-stack web applications with
+                                    Django</strong>,
+                                where I mastered <strong>HTML, CSS, Tailwind, JavaScript, and jQuery</strong> to craft
+                                user-centric
+                                experiences. Now, I am specializing in the <strong>MERN stack</strong> through a
+                                <strong>software engineering scholarship at Power Learn Project Academy</strong>. I
+                                focus on
+                                scalable web architectures, modern frameworks, and industry best practices.
                             </p>
 
-                            <p class="about-description">
-                                As technology evolved, so did I. Currently, I am specializing in the <strong>MERN stack
-                                    (MongoDB, Express.js, React,
-                                    Node.js)</strong> through a
-                                <strong>software engineering scholarship at Power Learn Project Academy</strong>. This
-                                journey has enabled me to
-                                deepen my expertise in
-                                <strong>scalable web architectures, modern JavaScript frameworks, and industry-standard
-                                    best practices</strong>.
+                            <h4 class="iam reveal">Technologies I Use</h4>
+                            <p class="about-description reveal">
+                                My tech stack includes:
+                                <br>✅ <strong>Frontend:</strong> HTML, CSS, Tailwind, Bootstrap, JavaScript, React
+                                <br>✅ <strong>Backend:</strong> Node.js, Express.js, Django
+                                <br>✅ <strong>Database:</strong> MongoDB, PostgreSQL
+                                <br>✅ <strong>Other:</strong> Git, GitHub, REST APIs
                             </p>
-
-                            <p class="about-description">
-                                My mission is clear: <strong class="about-description">to help businesses and
-                                    individuals leverage technology to
-                                    build innovative,
-                                    high-performance digital solutions</strong>.
-                                Whether it's crafting intuitive user experiences, optimizing backend efficiency, or
-                                ensuring seamless integrations,
-                                I thrive on transforming ideas into impactful, scalable web applications.
-                            </p>
-
-                            <p class="about-description">
-                                Let's build something great together. 🚀
-                            </p>
-                            <div class="performance-list">
-
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -178,8 +164,68 @@
     </section>
     <!-- END ABOUT SECTION -->
     <!-- RESUME SECTION -->
-
-
+    <div class="my-section nav-menu-section" id="resume">
+        <div class="my-container my-sub-container">
+            <div class="my-wrapper">
+                <div class="section-title">
+                    <h3>My Resume</h3>
+                    <p class="sub-title">Combination of Education, Experience &amp; Skills</p>
+                </div>
+                <div class="resume-tabs">
+                    <a href="#" class="tab-btn active"><i class="ri-graduation-cap-line"></i>Education</a>
+                    <a href="#" class="tab-btn"><i class="ri-sparkling-line"></i>Experience</a>
+                    <a href="#" class="tab-btn"><i class="ri-user-settings-line"></i>Personal Skills</a>
+                </div>
+                <div class="section-content">
+                    <div class="resume-tab-content education active">
+                        <div class="resume-line"></div>
+                        <div class="resume-items">
+                            <div class="item item-left">
+                                <div class="info">
+                                    <i class="ri-graduation-cap-fill"></i>
+                                    <div>
+                                        <h5>Bachelor Of Science in Information Technology</h5>
+                                        <p>Kabarak University</p>
+                                        <span>2017-2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item item-right">
+                                <div class="info">
+                                    <i class="ri-graduation-cap-fill"></i>
+                                    <div>
+                                        <h5>SQL Training Certificate</h5>
+                                        <p>Learnomate Technologies Pvt Ltd</p>
+                                        <span>2024-2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item item-left">
+                                <div class="info">
+                                    <i class="ri-graduation-cap-fill"></i>
+                                    <div>
+                                        <h5>Cybersecurity and Emerging Technologies Awareness Training Certificate</h5>
+                                        <p>ICT Authority Smart Academy</p>
+                                        <span>2024-2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item item-right">
+                                <div class="info">
+                                    <i class="ri-graduation-cap-fill"></i>
+                                    <div>
+                                        <h5>Software Development</h5>
+                                        <p>Power Learn Project Academy</p>
+                                        <span>2025-Present</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
