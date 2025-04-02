@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mediaQuery.css">
 
-    <!-- Link to external javaScript file -->
-    <script src="../javaScript/script.js"></script>
+    <!-- Link to external JavaScript file (with 'defer' to ensure it runs after HTML is parsed) -->
+    <script src="../javaScript/script.js" defer></script>
 
+    <!-- Title of the web page displayed in the browser tab -->
     <title>My Portfolio</title>
 </head>
 
@@ -70,7 +71,7 @@
         <!-- Profile Picture Section -->
         <div class="profile-pic-container">
             <!-- Profile image (displayed in hero section) -->
-            <img src="../assets/homeImage.jpg" alt="profile picture" />
+            <img src="../assets/homeImage.jpg" alt="Denis Mwanzia profile picture" />
         </div>
 
         <!-- Home Section Content -->
@@ -104,30 +105,71 @@
     <!-- END Hero Section -->
 
     <!-- ABOUT SECTION -->
-    <section id="about" class="about">
-        <div class="about-container">
-            <div class="about-wrapper">
-                <div class="about-title">
+    <section id="about" class="my-section nav-menu-section">
+        <div class="my-container my-sub-container">
+            <div class="my-wrapper">
+                <!-- Section Title -->
+                <div class="section-title about-title">
                     <h3>About Me</h3>
-                    <p>What I do</p>
+                    <p>Who I am and What I do</p>
                 </div>
                 <div class="about-section-content">
                     <div class="about-img">
-                        <img src="../assets/homeImage.jpg" alt="About Photo">
+                        <!-- Profile image in the About section -->
+                        <img src="../assets/about.svg" alt="Denis Mwanzia portrait">
                     </div>
                     <div class="about-details">
                         <div class="about-info">
                             <h4 class="iam">I am a Full-Stack Web Developer &amp; IT Specialist</h4>
-                            <p>
-                                I am a passionate Full-Stack Web Developer and IT Specialist based in Kenya, with a
-                                Bachelor degree in Information
-                                Technology from Kabarak University. My journey into web development began with a
-                                curiosity for how technology can solve
-                                complex problems and improve lives. I started by developing full-stack web applications
-                                using Django, where I honed my
-                                skills in creating dynamic websites. With Django as my foundation, I gained hands-on
-                                experience with
+                            <!-- Description about who you are and what you do -->
+                            <p class="about-description">
+                                I am a dedicated <strong>Full-Stack Web Developer &amp; IT Specialist</strong> based in
+                                Kenya, with a
+                                <strong>Bachelor’s degree in Information Technology</strong> from Kabarak University. My
+                                journey into web
+                                development
+                                began with a simple idea: using technology to solve real-world challenges and create
+                                seamless digital experiences.
                             </p>
+
+                            <p class="about-description">
+                                I started my career building <strong>dynamic full-stack web applications with Django
+                                </strong>, where
+                                I mastered
+                                <strong>HTML for structuring content, CSS for styling, Tailwind for modern UI design,
+                                    and JavaScript/jQuery</strong>
+                                for interactivity.
+                                This foundation allowed me to craft user-centric websites with a balance of
+                                functionality and aesthetics.
+                            </p>
+
+                            <p class="about-description">
+                                As technology evolved, so did I. Currently, I am specializing in the <strong>MERN stack
+                                    (MongoDB, Express.js, React,
+                                    Node.js)</strong> through a
+                                <strong>software engineering scholarship at Power Learn Project Academy</strong>. This
+                                journey has enabled me to
+                                deepen my expertise in
+                                <strong>scalable web architectures, modern JavaScript frameworks, and industry-standard
+                                    best practices</strong>.
+                            </p>
+
+                            <p class="about-description">
+                                My mission is clear: <strong class="about-description">to help businesses and
+                                    individuals leverage technology to
+                                    build innovative,
+                                    high-performance digital solutions</strong>.
+                                Whether it's crafting intuitive user experiences, optimizing backend efficiency, or
+                                ensuring seamless integrations,
+                                I thrive on transforming ideas into impactful, scalable web applications.
+                            </p>
+
+                            <p class="about-description">
+                                Let's build something great together. 🚀
+                            </p>
+                            <div class="performance-list">
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,6 +177,9 @@
         </div>
     </section>
     <!-- END ABOUT SECTION -->
+    <!-- RESUME SECTION -->
+
+
 </body>
 
 </html>
