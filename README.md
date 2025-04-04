@@ -8,11 +8,9 @@
  
  ✨ ***Features***
 
-   ✔️ Dark/Light Mode for better user experience
-
    ✔️ Smooth Animations & Transitions for an engaging UI
 
-   ✔️ Interactive Skills Progress Tracker
+   ✔️ Interactive Resume section
 
    ✔️ Mobile-friendly & Responsive Design
 
@@ -27,8 +25,8 @@
 ---
 ```
 /portfolio-project
-│── html/
-│   └── index.html   # Main HTML file  
+│── index.html   # Main HTML file
+│     
 │── css/
 │   └── style.css    # Styling file  
 │── javascript/
