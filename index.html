@@ -452,22 +452,25 @@
 
                 <!-- Project filter tabs -->
                 <div class="project-tabs" role="tablist">
-                    <button class="tab-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
-                    <button class="tab-btn" data-filter="frontend" role="tab" aria-selected="false">FrontEnd</button>
-                    <!-- <button class="tab-btn" data-filter="backend" role="tab" aria-selected="false">Backend</button> -->
-                    <button class="tab-btn" data-filter="ai" role="tab" aria-selected="false">AI &amp; Machine
+                    <button class="tab-btn active" data-filter="all" role="tab" aria-selected="true"
+                        aria-controls="projects-grid">All</button>
+                    <button class="tab-btn" data-filter="frontend" role="tab" aria-selected="false"
+                        aria-controls="projects-grid">FrontEnd</button>
+                    <button class="tab-btn" data-filter="ai" role="tab" aria-selected="false"
+                        aria-controls="projects-grid">AI &amp; Machine
                         Learning</button>
-                    <button class="tab-btn" data-filter="fullstack" role="tab" aria-selected="false">Fullstack</button>
+                    <button class="tab-btn" data-filter="fullstack" role="tab" aria-selected="false"
+                        aria-controls="projects-grid">Fullstack</button>
                 </div>
 
                 <!-- Projects grid -->
                 <div class="section-content">
-                    <div class="project-container" role="presentation">
+                    <div class="project-container" id="projects-grid" role="region" aria-live="polite">
                         <!-- AI Project Card -->
                         <div class="card-with-model ai" data-category="ai" role="article" data-project="ai1">
                             <div class="project-card">
                                 <div class="card-image">
-                                    <img src="../assets/aiSentiment.jpg" alt="AI Project Example" loading="lazy">
+                                    <img src="../assets/aiSentiment.jpg" alt="AI Project" loading="lazy">
                                 </div>
                                 <div class="card-info">
                                     <span>AI and Machine Learning Project</span>
@@ -478,11 +481,11 @@
                         </div>
 
                         <!-- Fullstack Project Card  -->
-                        <div class="card-with-model frontend" data-category="fullstack" role="article"
+                        <div class="card-with-model fullstack" data-category="fullstack" role="article"
                             data-project="fullstack1">
                             <div class="project-card">
                                 <div class="card-image">
-                                    <img src="../assets/ecommerce.jpg" alt="Fullstack Project Example" loading="lazy">
+                                    <img src="../assets/ecommerce.jpg" alt="Fullstack Project" loading="lazy">
                                 </div>
                                 <div class="card-info">
                                     <span>Fullstack Project</span>
@@ -497,7 +500,7 @@
                             data-project="frontend2">
                             <div class="project-card">
                                 <div class="card-image">
-                                    <img src="../assets/uiUx.jpg" alt="Frontend Project Example" loading="lazy">
+                                    <img src="../assets/uiUx.jpg" alt="Frontend Project" loading="lazy">
                                 </div>
                                 <div class="card-info">
                                     <span>Frontend Project</span>
@@ -557,14 +560,14 @@
                         <i class="ri-mail-line"></i>
                         <div>
                             <h4>Email</h4>
-                            <a href="mailto:your.denismunyoki5657@gmail.com">denismunyoki5657@gmail.com</a>
+                            <a href="mailto:denismunyoki5657@gmail.com">denismunyoki5657@gmail.com</a>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="ri-phone-line"></i>
                         <div>
                             <h4>Phone</h4>
-                            <a href="+254110433220">+254110433220</a>
+                            <a href="tel:+254110433220">+254110433220</a>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -605,10 +608,12 @@
                     <h3>Denis Mwanzia</h3>
                     <p>A passionate developer creating beautiful, functional websites and applications.</p>
                     <div class="social-links">
-                        <a href="#"><i class="ri-github-fill"></i></a>
-                        <a href="#"><i class="ri-linkedin-fill"></i></a>
-                        <a href="#"><i class="ri-twitter-fill"></i></a>
-                        <a href="#"><i class="ri-instagram-line"></i></a>
+                        <a href="https://github.com/Denis-Mwanzia" target="_blank" rel="noopener"><i
+                                class="ri-github-fill"></i></a>
+                        <a href="https://www.linkedin.com/in/denis-mwanzia" target="_blank" rel="noopener"><i
+                                class="ri-linkedin-fill"></i></a>
+                        <a href=""><i class="ri-twitter-fill"></i></a>
+                        <a href=""><i class="ri-instagram-line"></i></a>
                     </div>
                 </div>
 
@@ -626,7 +631,7 @@
 
             <!-- Copyright notice -->
             <div class="footer-bottom">
-                <p>&copy; <span id="year"></span> Denis Mwanzia. All rights reserved.</p>
+                <p>&copy; <span id="year">2025</span> Denis Mwanzia. All rights reserved.</p>
             </div>
         </div>
     </footer>
