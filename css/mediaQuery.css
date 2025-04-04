@@ -1,216 +1,36 @@
-/* ================================================
-   RESPONSIVE MEDIA QUERIES - COMPLETE SET
-   ================================================ */
+/* Medium devices (tablets, 920px and below) */
+@media (max-width: 920px) {
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-
-    /* Header adjustments */
-    header {
-        padding: 1.5rem 7%;
-    }
-
-    /* Hero section */
-    .hero-section {
-        padding: 2rem 3rem;
-    }
-
-    .hero-title {
-        font-size: 2.8rem;
-    }
-
-    /* About section */
+    /* About Section Adjustments */
     .about-section-content {
-        gap: 4rem;
-    }
-
-    /* Resume section */
-    .resume-tabs {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .skill-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-
-    /* Navigation */
-    #desktop-header {
-        display: flex;
-    }
-
-    #hamburger-nav {
-        display: none;
-    }
-
-    /* Hero section */
-    .hero-container {
-        flex-direction: row;
-    }
-
-    .hero-title {
-        font-size: 3.2rem;
-    }
-
-    /* About section */
-    .about-section-content {
-        flex-direction: row-reverse;
-    }
-
-    /* Projects grid */
-    .project-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Contact section */
-    .contact-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Resume section */
-    .resume-tab-content {
-        flex-direction: row;
-    }
-
-    .resume-line {
-        display: block;
-        height: 100%;
-    }
-
-    .resume-items {
-        row-gap: 3rem;
-    }
-
-    .resume-items .item::before {
-        display: block;
-    }
-
-    .skill-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
-    /* Header */
-    header {
-        padding: 1.5rem 10%;
-    }
-
-    /* Hero section */
-    .hero-title {
-        font-size: 3.5rem;
-    }
-
-    /* About section */
-    .about-img {
-        flex-basis: 35%;
-    }
-
-    /* Projects grid */
-    .project-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    /* Resume section */
-    .resume-items .item-left .info {
-        right: 3rem;
-    }
-
-    .resume-items .item-right .info {
-        left: 3rem;
-    }
-
-    .skill-card {
-        padding: 2.5rem;
-    }
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
-    /* Container max-width */
-    .my-container {
-        max-width: 1140px;
-    }
-
-    /* Resume section */
-    .resume-items .item-left .info {
-        right: 4rem;
-    }
-
-    .resume-items .item-right .info {
-        left: 4rem;
-    }
-}
-
-/* Mobile-specific adjustments (less than 768px) */
-@media (max-width: 767px) {
-
-    /* Hide desktop nav, show mobile toggle */
-    #desktop-header {
-        display: none;
-    }
-
-    #hamburger-nav {
-        display: flex;
-    }
-
-    /* Hero section */
-    .hero-section {
-        height: auto;
-        padding: 4rem 1.5rem;
-    }
-
-    .hero-container {
-        flex-direction: column;
-        gap: 3rem;
-    }
-
-    .profile-pic-container img {
-        width: 220px;
-        height: 220px;
-    }
-
-    .hero-title {
-        font-size: 2.5rem;
-    }
-
-    /* About section */
-    .about-section-content {
-        flex-direction: column;
+        flex-direction: column-reverse !important;
+        gap: 2rem;
     }
 
     .about-img {
-        margin-bottom: 2rem;
+        max-width: 80%;
+        margin: 0 auto 2rem;
     }
 
-    /* Button container */
-    .btn-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .btn {
+    .about-details {
         width: 100%;
-        max-width: 250px;
-        margin-bottom: 1rem;
+        padding: 1.5rem;
+        text-align: center;
     }
 
-    /* Projects grid */
-    .project-container {
-        grid-template-columns: 1fr;
+    .about-description {
+        max-width: 100%;
+        padding-right: 0;
     }
 
-    /* Resume section */
-    .resume-tabs {
+    /* Resume Section Adjustments */
+    .resume-container {
         flex-direction: column;
-        align-items: stretch;
+        gap: 2rem;
+    }
+
+    .resume-column {
+        width: 100%;
     }
 
     .resume-line {
@@ -218,9 +38,10 @@
     }
 
     .resume-items .item .info {
-        position: static;
+        position: static !important;
         width: 100%;
         flex-direction: column;
+        text-align: center;
     }
 
     .resume-items .item::before {
@@ -241,155 +62,39 @@
     }
 }
 
-/* Very small devices (phones, less than 576px) */
-@media (max-width: 575px) {
+/* Smaller screens (below 768px) */
+@media (max-width: 768px) {
 
-    /* Hero section */
-    .hero-title {
-        font-size: 2.2rem;
+    /* About Section */
+    .about-img {
+        max-width: 100%;
     }
 
-    .section-text-p2 {
-        font-size: 1.1rem;
+    .section-title h3 {
+        font-size: 2rem;
     }
 
-    /* Navigation */
-    .menu-links {
-        width: 85%;
+    .sub-title {
+        font-size: 1.2rem;
     }
 
-    /* Footer */
-    .footer-content {
-        flex-direction: column;
-    }
-
-    /* Resume section */
-    .resume-items .item .info i {
-        font-size: 1.5rem;
-    }
-
-    .resume-items .item .info h5 {
-        font-size: 1.1rem;
-    }
-
-    .resume-items .item .info span {
-        font-size: 1rem;
-    }
-}
-
-/* Tablet portrait adjustments */
-@media (min-width: 768px) and (max-width: 991px) {
-
-    /* About section */
-    .about-details {
-        padding: 2rem;
-    }
-
-    /* Projects grid */
-    .project-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Resume section */
-    .resume-items .item-left .info {
-        right: 2rem;
-    }
-
-    .resume-items .item-right .info {
-        left: 2rem;
-    }
-}
-
-/* Tablet landscape adjustments */
-@media (min-width: 992px) and (max-width: 1199px) {
-
-    /* About section */
-    .about-section-content {
-        gap: 3rem;
-    }
-}
-
-/* High DPI/Retina displays */
-@media (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
-
-    /* Use higher resolution assets if available */
-    .logo {
-        font-weight: 600;
-        /* Makes text sharper on retina */
-    }
-}
-
-/* Dark mode preference */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --dark-blue: #f8f9fc;
-        --off-white: #171d27;
-        --white: #222;
-        --medium-gray: #d3d3d3;
-    }
-
-    body {
-        background-color: var(--off-white);
-        color: var(--medium-gray);
-    }
-
-    .hero-section {
-        background: linear-gradient(to bottom, #121212 0%, #1a1a1a 100%);
-    }
-
-    .my-section {
-        background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
-    }
-}
-
-/* Reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-        transition: none !important;
-    }
-
-    html {
-        scroll-behavior: auto;
-    }
-}
-
-/* Print styles */
-@media print {
-    body {
-        background: white;
-        color: black;
-        font-size: 12pt;
-    }
-
-    #main-header,
-    .mobile-nav-toggle,
-    .scroll-indicator,
-    .footer {
-        display: none !important;
-    }
-
-    a {
-        text-decoration: underline;
-    }
-
-    .hero-section {
-        min-height: auto;
-        padding: 1rem 0;
-    }
-
-    .hero-container {
-        flex-direction: row;
-        gap: 2rem;
-    }
-
-    /* Resume section */
+    /* Resume Section */
     .resume-tabs {
-        flex-direction: row !important;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .resume-line {
-        display: block !important;
+    .resume-item {
+        padding: 1rem;
+    }
+
+    .item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .skill-card {
+        width: 100%;
     }
 }

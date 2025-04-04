@@ -85,7 +85,7 @@ a {
 .desktop-nav .nav-links {
     display: flex;
     gap: 2rem;
-    list-style: none;
+    list-style: none;  
 }
 
 .nav-link {
