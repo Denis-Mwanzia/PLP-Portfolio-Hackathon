@@ -1,213 +1,395 @@
-/* Media Queries for Responsiveness */
+/* ================================================
+   RESPONSIVE MEDIA QUERIES - COMPLETE SET
+   ================================================ */
 
-/* Hide hamburger menu by default */
-#hamburger-nav {
-    display: none;
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+
+    /* Header adjustments */
+    header {
+        padding: 1.5rem 7%;
+    }
+
+    /* Hero section */
+    .hero-section {
+        padding: 2rem 3rem;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    /* About section */
+    .about-section-content {
+        gap: 4rem;
+    }
+
+    /* Resume section */
+    .resume-tabs {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .skill-container {
+        grid-template-columns: 1fr;
+    }
 }
 
-/* For screen widths up to 1200px (Tablets & Smaller Desktops) */
-@media screen and (max-width: 1200px) {
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
 
-    /* Hide desktop header */
+    /* Navigation */
+    #desktop-header {
+        display: flex;
+    }
+
+    #hamburger-nav {
+        display: none;
+    }
+
+    /* Hero section */
+    .hero-container {
+        flex-direction: row;
+    }
+
+    .hero-title {
+        font-size: 3.2rem;
+    }
+
+    /* About section */
+    .about-section-content {
+        flex-direction: row-reverse;
+    }
+
+    /* Projects grid */
+    .project-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Contact section */
+    .contact-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Resume section */
+    .resume-tab-content {
+        flex-direction: row;
+    }
+
+    .resume-line {
+        display: block;
+        height: 100%;
+    }
+
+    .resume-items {
+        row-gap: 3rem;
+    }
+
+    .resume-items .item::before {
+        display: block;
+    }
+
+    .skill-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+    /* Header */
+    header {
+        padding: 1.5rem 10%;
+    }
+
+    /* Hero section */
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    /* About section */
+    .about-img {
+        flex-basis: 35%;
+    }
+
+    /* Projects grid */
+    .project-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Resume section */
+    .resume-items .item-left .info {
+        right: 3rem;
+    }
+
+    .resume-items .item-right .info {
+        left: 3rem;
+    }
+
+    .skill-card {
+        padding: 2.5rem;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+    /* Container max-width */
+    .my-container {
+        max-width: 1140px;
+    }
+
+    /* Resume section */
+    .resume-items .item-left .info {
+        right: 4rem;
+    }
+
+    .resume-items .item-right .info {
+        left: 4rem;
+    }
+}
+
+/* Mobile-specific adjustments (less than 768px) */
+@media (max-width: 767px) {
+
+    /* Hide desktop nav, show mobile toggle */
     #desktop-header {
         display: none;
     }
 
-    /* Show hamburger menu on smaller screens */
     #hamburger-nav {
         display: flex;
     }
 
-    /* Adjust the hero section layout for smaller screens */
-    #home {
-        flex-direction: column;
+    /* Hero section */
+    .hero-section {
         height: auto;
-        padding: 2rem;
+        padding: 4rem 1.5rem;
     }
 
-    /* Adjust profile image size */
+    .hero-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
     .profile-pic-container img {
-        width: 200px;
-        height: 200px;
+        width: 220px;
+        height: 220px;
     }
 
-    /* Adjust title font size */
-    .title {
-        font-size: 2rem;
+    .hero-title {
+        font-size: 2.5rem;
     }
 
-    /* Adjust secondary text size */
-    .section-text-p2 {
-        font-size: 1rem;
-    }
-
-    /* Ensure buttons stay side by side */
-    .btn-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    /* Adjust the menu links for mobile-friendly display */
-    .menu-links {
-        width: 100%;
-        right: 0;
-        top: 50px;
-    }
-
-    /* Adjust about section content */
+    /* About section */
     .about-section-content {
         flex-direction: column;
-        text-align: center;
-        row-gap: 2rem;
     }
 
     .about-img {
-        width: 80%;
+        margin-bottom: 2rem;
     }
 
-    .about-details {
+    /* Button container */
+    .btn-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
         width: 100%;
+        max-width: 250px;
+        margin-bottom: 1rem;
     }
 
-    /* Adjust .about-info for smaller screens */
-    .about-info {
+    /* Projects grid */
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Resume section */
+    .resume-tabs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .resume-line {
+        display: none;
+    }
+
+    .resume-items .item .info {
+        position: static;
         width: 100%;
-        padding: 1rem;
+        flex-direction: column;
     }
 
-    .about-info .iam {
-        font-size: 1.3rem;
-        margin-bottom: 20px;
+    .resume-items .item::before {
+        display: none;
     }
 
-    .about-info .about-description {
-        font-size: 1rem;
-        line-height: 1.6;
-        padding: 0 1rem;
+    .skill-container {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-card {
+        min-height: auto;
+        padding: 1.5rem;
+    }
+
+    .skill-categories {
+        grid-template-columns: 1fr;
     }
 }
 
-/* Further adjustments for tablets and smaller devices (max-width 768px) */
-@media screen and (max-width: 768px) {
+/* Very small devices (phones, less than 576px) */
+@media (max-width: 575px) {
 
-    /* Reduce font size for navigation links */
-    .nav-links {
-        font-size: 1.2rem;
+    /* Hero section */
+    .hero-title {
+        font-size: 2.2rem;
     }
 
-    /* Adjust profile image size */
-    .profile-pic-container img {
-        width: 180px;
-        height: 180px;
-    }
-
-    /* Adjust title font size */
-    .title {
-        font-size: 1.8rem;
-    }
-
-    /* Adjust secondary text font size */
     .section-text-p2 {
-        font-size: 0.9rem;
-    }
-
-    /* Adjust button size */
-    .btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-    }
-
-    /* Ensure buttons remain side by side */
-    .btn-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    /* Adjust icon size for mobile view */
-    .icon {
-        width: 25px;
-        height: 25px;
-    }
-
-    /* Adjust .about-info for smaller screens */
-    .about-info {
-        width: 100%;
-        padding: 0.5rem;
-    }
-
-    .about-info .iam {
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-    }
-
-    .about-info .about-description {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        padding: 0 1rem;
-    }
-}
-
-/* Adjustments for mobile devices (max-width 480px) */
-@media screen and (max-width: 480px) {
-
-    /* Reduce logo font size for mobile */
-    .logo {
-        font-size: 1.5rem;
-    }
-
-    /* Adjust profile image size */
-    .profile-pic-container img {
-        width: 150px;
-        height: 150px;
-    }
-
-    /* Adjust title font size */
-    .title {
-        font-size: 1.5rem;
-    }
-
-    /* Adjust secondary text font size */
-    .section-text-p2 {
-        font-size: 0.8rem;
-    }
-
-    /* Adjust button size for small screens */
-    .btn {
-        padding: 0.3rem 0.7rem;
-        font-size: 0.75rem;
-    }
-
-    /* Ensure buttons stay side by side */
-    .btn-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
-    }
-
-    /* Adjust icon size for mobile view */
-    .icon {
-        width: 20px;
-        height: 20px;
-    }
-
-    /* Adjust .about-info for mobile screens */
-    .about-info {
-        width: 100%;
-        padding: 0.5rem;
-    }
-
-    .about-info .iam {
         font-size: 1.1rem;
-        margin-bottom: 10px;
     }
 
-    .about-info .about-description {
-        font-size: 0.85rem;
-        line-height: 1.6;
-        padding: 0 0.5rem;
+    /* Navigation */
+    .menu-links {
+        width: 85%;
+    }
+
+    /* Footer */
+    .footer-content {
+        flex-direction: column;
+    }
+
+    /* Resume section */
+    .resume-items .item .info i {
+        font-size: 1.5rem;
+    }
+
+    .resume-items .item .info h5 {
+        font-size: 1.1rem;
+    }
+
+    .resume-items .item .info span {
+        font-size: 1rem;
+    }
+}
+
+/* Tablet portrait adjustments */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    /* About section */
+    .about-details {
+        padding: 2rem;
+    }
+
+    /* Projects grid */
+    .project-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Resume section */
+    .resume-items .item-left .info {
+        right: 2rem;
+    }
+
+    .resume-items .item-right .info {
+        left: 2rem;
+    }
+}
+
+/* Tablet landscape adjustments */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    /* About section */
+    .about-section-content {
+        gap: 3rem;
+    }
+}
+
+/* High DPI/Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
+    /* Use higher resolution assets if available */
+    .logo {
+        font-weight: 600;
+        /* Makes text sharper on retina */
+    }
+}
+
+/* Dark mode preference */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dark-blue: #f8f9fc;
+        --off-white: #171d27;
+        --white: #222;
+        --medium-gray: #d3d3d3;
+    }
+
+    body {
+        background-color: var(--off-white);
+        color: var(--medium-gray);
+    }
+
+    .hero-section {
+        background: linear-gradient(to bottom, #121212 0%, #1a1a1a 100%);
+    }
+
+    .my-section {
+        background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+        font-size: 12pt;
+    }
+
+    #main-header,
+    .mobile-nav-toggle,
+    .scroll-indicator,
+    .footer {
+        display: none !important;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    .hero-section {
+        min-height: auto;
+        padding: 1rem 0;
+    }
+
+    .hero-container {
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    /* Resume section */
+    .resume-tabs {
+        flex-direction: row !important;
+    }
+
+    .resume-line {
+        display: block !important;
     }
 }
