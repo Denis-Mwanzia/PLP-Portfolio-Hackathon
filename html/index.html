@@ -2,135 +2,147 @@
 <html lang="en">
 
 <head>
-    <!-- Meta tags for character set, author, description, and responsive design -->
+    <!-- Basic meta tags for SEO and responsive design -->
     <meta charset="UTF-8">
     <meta name="author" content="Denis Mwanzia">
     <meta name="description" content="My web based portfolio">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Link to external CSS files for styling -->
+    <!-- CSS stylesheets -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mediaQuery.css">
 
-    <!-- Remix Icon CDN -->
+    <!-- Icon library -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 
-    <!-- Link to external JavaScript file (with 'defer' to ensure it runs after HTML is parsed) -->
+    <!-- JavaScript file -->
     <script src="../javaScript/script.js" defer></script>
 
-    <!-- Title of the web page displayed in the browser tab -->
+    <!-- Page title -->
     <title>My Portfolio</title>
 </head>
 
 <body>
-    <!-- HEADER SECTION -->
+    <!-- Navigation Header -->
+    <header id="main-header">
+        <!-- Site logo with subtle hover effect -->
+        <div class="logo" aria-label="Denis Mwanzia Portfolio">
+            <span class="logo-text">Denis</span>
+            <span class="logo-dot"></span>
+        </div>
 
-    <!-- Desktop Navigation Section -->
-    <header id="desktop-header">
-        <!-- Logo for desktop view -->
-        <div class="logo">Denis</div>
-
-        <!-- Desktop navigation menu -->
-        <nav>
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
             <ul class="nav-links">
-                <!-- Navigation links for Home, About, Resume, Projects, and Contact -->
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#resume" class="nav-link">Resume</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
+
+        <!-- Mobile Navigation Toggle -->
+        <button class="mobile-nav-toggle" aria-controls="mobile-nav" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
     </header>
 
-    <!-- Hamburger Navigation for Mobile/Tablet -->
-    <nav id="hamburger-nav">
-        <!-- Checkbox used to toggle the hamburger menu -->
-        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-
-        <!-- Label for the hamburger icon -->
-        <label for="menu-toggle" class="hamburger-icon">
-            <span></span> <!-- Top bar of the hamburger -->
-            <span></span> <!-- Middle bar of the hamburger -->
-            <span></span> <!-- Bottom bar of the hamburger -->
-        </label>
-
-        <!-- Mobile navigation links (hidden by default) -->
-        <div class="menu-links">
-            <!-- Menu items for the mobile view -->
-            <a href="#home" class="menu-item">Home</a>
-            <a href="#about" class="menu-item">About</a>
-            <a href="#resume" class="menu-item">Resume</a>
-            <a href="#projects" class="menu-item">Projects</a>
-            <a href="#contact" class="menu-item">Contact</a>
-        </div>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-nav" class="mobile-nav" aria-hidden="true">
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="mobile-nav-link active">Home</a></li>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#resume" class="mobile-nav-link">Resume</a></li>
+            <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
     </nav>
-    <!-- END HEADER SECTION-->
-
-    <!-- MAIN SECTION -->
 
     <!-- Hero Section -->
-    <section id="home">
-        <!-- Profile Picture Section -->
-        <div class="profile-pic-container">
-            <!-- Profile image (displayed in hero section) -->
-            <img src="../assets/homeImage.jpg" alt="Denis Mwanzia profile picture" />
+    <section id="home" class="hero-section">
+        <div class="hero-container">
+            <!-- Profile Image with Animated Border -->
+            <div class="profile-container">
+                <div class="profile-border">
+                    <img src="../assets/homeImage.jpg" alt="Denis Mwanzia" class="profile-image" loading="eager">
+                </div>
+                <div class="profile-shadow"></div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="hero-content">
+                <p class="hero-greeting">Hello, I'm</p>
+                <h1 class="hero-title">
+                    <span class="title-part">Denis</span>
+                    <span class="title-part">Mwanzia</span>
+                </h1>
+                <p class="hero-subtitle">Full-Stack Developer & IT Specialist</p>
+
+                <!-- Call-to-Action Buttons -->
+                <div class="hero-actions">
+                    <a href="../assets/resume.pdf" class="btn btn-primary" download>
+                        <span>Download CV</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+                        </svg>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span>Let's Connect</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M21 11.5v-1c0-.8-.7-1.5-1.5-1.5H16v6h1v-2h1.1l.9 2H21l-.9-2.1c.5-.3.9-.8.9-1.4zm-1.5 0h-2v-1h2v1zm-13-.5h-2V9H3v6h1.5v-2.5h2V15H8V9H6.5v2zM13 9H9.5v6H13c.8 0 1.5-.7 1.5-1.5v-3c0-.8-.7-1.5-1.5-1.5zm0 4.5h-2v-3h2v3z" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/denis-mwanzia" class="social-link" aria-label="LinkedIn"
+                        target="_blank" rel="noopener">
+                        <img src="../assets/linkedin.png" alt="LinkedIn" class="social-icon">
+                        <span class="social-tooltip">Connect on LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/Denis-Mwanzia" class="social-link" aria-label="GitHub" target="_blank"
+                        rel="noopener">
+                        <img src="../assets/github.png" alt="GitHub" class="social-icon">
+                        <span class="social-tooltip">View GitHub Profile</span>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <!-- Home Section Content -->
-        <div class="section-text">
-            <!-- Introduction Text -->
-            <p class="section-text-p1">Hello, I'm</p>
-            <h1 class="title">Denis Mwanzia</h1>
-            <p class="section-text-p2">A Full-Stack Web Developer &amp; IT Specialist</p>
-
-            <!-- Action buttons (Download CV and Let's Connect) -->
-            <div class="btn-container">
-                <!-- Button for downloading CV -->
-                <a href="../assets/resume.pdf" class="btn btn-color-1" download>Download CV</a>
-                <!-- Button for contacting via the Contact section -->
-                <a href="#contact" class="btn btn-color-2">Lets Connect</a>
-            </div>
-
-            <!-- Social Media Icons -->
-            <div id="social-container">
-                <!-- LinkedIn profile button -->
-                <a href="https://www.linkedin.com/in/denis-mwanzia" class="social-btn">
-                    <img src="../assets/linkedin.png" alt="LinkedIn profile" class="icon">
-                </a>
-                <!-- GitHub profile button -->
-                <a href="https://github.com/Denis-Mwanzia" class="social-btn">
-                    <img src="../assets/github.png" alt="GitHub profile" class="icon">
-                </a>
-            </div>
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" aria-hidden="true">
+            <div class="scroll-line"></div>
         </div>
     </section>
-    <!-- END Hero Section -->
-
-    <!-- ABOUT SECTION -->
+    <!-- About Me section -->
     <section id="about" class="my-section nav-menu-section">
         <div class="my-container my-sub-container">
             <div class="my-wrapper">
-                <!-- Section Title -->
+                <!-- Section heading -->
                 <div class="section-title about-title">
                     <h3>About Me</h3>
                     <p class="sub-title">Who I am and what I do</p>
                 </div>
 
                 <div class="about-section-content">
-                    <!-- Profile image in the About section -->
+                    <!-- About section image -->
                     <div class="about-img">
                         <img src="../assets/about.PNG" alt="Denis Mwanzia portrait">
                     </div>
 
-                    <!-- About details -->
+                    <!-- About section text content -->
                     <div class="about-details">
                         <div class="about-info">
                             <h4 class="iam reveal">Who I Am</h4>
                             <p class="about-description reveal">
                                 I am a dedicated <strong>Full-Stack Web Developer &amp; IT Specialist</strong> based in
                                 Kenya,
-                                with a <strong>Bachelor’s degree in Information Technology</strong> from Kabarak
+                                with a <strong>Bachelor's degree in Information Technology</strong> from Kabarak
                                 University.
                                 My journey into web development began with a passion for solving real-world challenges
                                 through technology.
@@ -147,36 +159,33 @@
                                 focus on
                                 scalable web architectures, modern frameworks, and industry best practices.
                             </p>
-
-                            <h4 class="iam reveal">Technologies I Use</h4>
-                            <p class="about-description reveal">
-                                My tech stack includes:
-                                <br>✅ <strong>Frontend:</strong> HTML, CSS, Tailwind, Bootstrap, JavaScript, React
-                                <br>✅ <strong>Backend:</strong> Node.js, Express.js, Django
-                                <br>✅ <strong>Database:</strong> MongoDB, PostgreSQL
-                                <br>✅ <strong>Other:</strong> Git, GitHub, REST APIs
-                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- END ABOUT SECTION -->
-    <!-- RESUME SECTION -->
-    <div class="my-section nav-menu-section" id="resume">
+
+    <!-- Resume section -->
+    <section class="my-section nav-menu-section" id="resume">
         <div class="my-container my-sub-container">
             <div class="my-wrapper">
+                <!-- Section heading -->
                 <div class="section-title">
                     <h3>My Resume</h3>
                     <p class="sub-title">Combination of Education, Experience &amp; Skills</p>
                 </div>
+
+                <!-- Resume tabs navigation -->
                 <div class="resume-tabs">
                     <a href="#" class="tab-btn active"><i class="ri-graduation-cap-line"></i>Education</a>
                     <a href="#" class="tab-btn"><i class="ri-sparkling-line"></i>Experience</a>
                     <a href="#" class="tab-btn"><i class="ri-user-settings-line"></i>Personal Skills</a>
                 </div>
+
+                <!-- Tab content -->
                 <div class="section-content">
+                    <!-- Education tab content -->
                     <div class="resume-tab-content education active">
                         <div class="resume-line"></div>
                         <div class="resume-items">
@@ -222,10 +231,420 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Experience tab content -->
+                    <div class="resume-tab-content experience ">
+                        <div class="resume-line"></div>
+                        <div class="resume-items">
+                            <div class="item item-left">
+                                <div class="info">
+                                    <i class="ri-sparkling-fill"></i>
+                                    <div>
+                                        <h5>Network Technician</h5>
+                                        <p>Tabasamu Fiber Networks Limited</p>
+                                        <span>2023-2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item item-right">
+                                <div class="info">
+                                    <i class="ri-sparkling-fill"></i>
+                                    <div>
+                                        <h5>Freelancer Web Developer &amp; Networking Consultancy</h5>
+                                        <p>Self-Employed</p>
+                                        <span>2023-Present</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills tab content -->
+                    <div class="resume-tab-content personal-skills">
+                        <div class="skill-container">
+                            <!-- Frontend skills card -->
+                            <div class="skill-card">
+                                <div class="skill-title">
+                                    <i class="ri-macbook-fill"></i>
+                                    <span>Front-End Developer</span>
+                                </div>
+                                <div class="skill-categories">
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>HTML</h5>
+                                            <span>Advanced</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>CSS</h5>
+                                            <span>Advanced</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Tailwind CSS</h5>
+                                            <span>Intermediate</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>JavaScript</h5>
+                                            <span>Intermediate</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>React</h5>
+                                            <span>Basic</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Bootstrap</h5>
+                                            <span>Intermediate</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Backend skills card -->
+                            <div class="skill-card">
+                                <div class="skill-title">
+                                    <i class="ri-server-fill"></i>
+                                    <span>Back-End Developer</span>
+                                </div>
+                                <div class="skill-categories">
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Django</h5>
+                                            <span>Intermediate</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Node.js</h5>
+                                            <span>Basic</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Express.js</h5>
+                                            <span>Basic</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>MySQL</h5>
+                                            <span>Intermediate</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>MongoDB</h5>
+                                            <span>Basic</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Restful APIs</h5>
+                                            <span>Intermediate</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Networking skills card -->
+                            <div class="skill-card">
+                                <div class="skill-title">
+                                    <i class="ri-router-line"></i>
+                                    <span>Networking &amp; IT Specialist</span>
+                                </div>
+                                <div class="skill-categories">
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Network Installation &amp; Troubleshooting</h5>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>MikroTik Configuration (Routing, Firewall, VPN)</h5>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>FTTH Installation &amp; Splicing</h5>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Linux &amp; Windows Server Administration</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tools/Technologies card -->
+                            <div class="skill-card">
+                                <div class="skill-title">
+                                    <i class="ri-tools-fill"></i>
+                                    <span>Tools &amp; Technologies</span>
+                                </div>
+                                <div class="skill-categories">
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Git &amp; GitHub</h5>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Docker &amp; Virtualization</h5>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Bash &amp; PowerShell Scripting</h5>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                        <div class="skill-info">
+                                            <h5>Cloud Computing (AWS)</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Projects section -->
+    <section class="my-section nav-menu-section" id="projects" aria-label="My Projects">
+        <div class="my-container my-sub-container">
+            <div class="my-wrapper">
+                <!-- Section heading -->
+                <div class="section-title">
+                    <h3>Projects</h3>
+                    <p>My creative works</p>
+                </div>
+
+                <!-- Project filter tabs -->
+                <div class="project-tabs" role="tablist">
+                    <button class="tab-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+                    <button class="tab-btn" data-filter="frontend" role="tab" aria-selected="false">FrontEnd</button>
+                    <!-- <button class="tab-btn" data-filter="backend" role="tab" aria-selected="false">Backend</button> -->
+                    <button class="tab-btn" data-filter="ai" role="tab" aria-selected="false">AI &amp; Machine
+                        Learning</button>
+                    <button class="tab-btn" data-filter="fullstack" role="tab" aria-selected="false">Fullstack</button>
+                </div>
+
+                <!-- Projects grid -->
+                <div class="section-content">
+                    <div class="project-container" role="presentation">
+                        <!-- AI Project Card -->
+                        <div class="card-with-model ai" data-category="ai" role="article" data-project="ai1">
+                            <div class="project-card">
+                                <div class="card-image">
+                                    <img src="../assets/aiSentiment.jpg" alt="AI Project Example" loading="lazy">
+                                </div>
+                                <div class="card-info">
+                                    <span>AI and Machine LearningProject</span>
+                                    <h4>Sentiment Analysis</h4>
+                                    <i class="ri-arrow-right-up-line card-btn" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fullstack Project Card  -->
+                        <div class="card-with-model frontend" data-category="fullstack" role="article"
+                            data-project="fullstack1">
+                            <div class="project-card">
+                                <div class="card-image">
+                                    <img src="../assets/ecommerce.jpg" alt="Fullstack Project Example" loading="lazy">
+                                </div>
+                                <div class="card-info">
+                                    <span>Mwananchi Ecommerce Store</span>
+                                    <h4>Fullstack</h4>
+                                    <i class="ri-arrow-right-up-line card-btn" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fullstack Project Card
+                        <div class="card-with-model fullstack" data-category="fullstack" role="article"
+                            data-project="fullstack1">
+                            <div class="project-card">
+                                <div class="card-image">
+                                    <img src="../assets/uiUx.jpg" alt="Fullstack Project Example" loading="lazy">
+                                </div>
+                                <div class="card-info">
+                                    <span>Web Application</span>
+                                    <h4>Dynamic</h4>
+                                    <i class="ri-arrow-right-up-line card-btn" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- Frontend Project Card -->
+                        <div class="card-with-model frontend" data-category="frontend" role="article"
+                            data-project="frontend2">
+                            <div class="project-card">
+                                <div class="card-image">
+                                    <img src="../assets/uiUx.jpg" alt="Frontend Project Example" loading="lazy">
+                                </div>
+                                <div class="card-info">
+                                    <span>Portfolio</span>
+                                    <h4>Frontend</h4>
+                                    <i class="ri-arrow-right-up-line card-btn" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project details popup -->
+        <div class="project-popup">
+            <div class="popup-overlay"></div>
+            <div class="popup-container">
+                <button class="popup-close" aria-label="Close popup">&times;</button>
+                <div class="popup-content">
+                    <div class="popup-image-container">
+                        <img class="popup-image" alt="Project Screenshot">
+                    </div>
+                    <div class="popup-details">
+                        <h3 class="popup-title">Project Title</h3>
+                        <p class="popup-description">Project description will appear here.</p>
+                        <div class="popup-meta">
+                            <span class="popup-category">Category: Loading...</span>
+                            <span class="popup-date">Date: Loading...</span>
+                        </div>
+                        <div class="popup-links">
+                            <a href="#" class="popup-link github-link" target="_blank" rel="noopener noreferrer">
+                                <i class="ri-github-fill"></i> View on GitHub
+                            </a>
+                            <a href="#" class="popup-link live-link" target="_blank" rel="noopener noreferrer">
+                                <i class="ri-external-link-line"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact section -->
+    <section class="my-section" id="contact">
+        <div class="my-container">
+            <!-- Section heading -->
+            <div class="section-title">
+                <h3>Get In Touch</h3>
+                <p>Let's work together</p>
+            </div>
+
+            <div class="contact-container">
+                <!-- Contact information -->
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="ri-mail-line"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:your.denismunyoki5657@gmail.com">denismunyoki5657@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="ri-phone-line"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <a href="+254110433220">+254110433220</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="ri-map-pin-line"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Nairobi, Kenya</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact form -->
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer section -->
+    <footer class="footer">
+        <div class="my-container">
+            <div class="footer-content">
+                <!-- About section in footer -->
+                <div class="footer-about">
+                    <h3>Denis Mwanzia</h3>
+                    <p>A passionate developer creating beautiful, functional websites and applications.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="ri-github-fill"></i></a>
+                        <a href="#"><i class="ri-linkedin-fill"></i></a>
+                        <a href="#"><i class="ri-twitter-fill"></i></a>
+                        <a href="#"><i class="ri-instagram-line"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick links in footer -->
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright notice -->
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Denis Mwanzia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
