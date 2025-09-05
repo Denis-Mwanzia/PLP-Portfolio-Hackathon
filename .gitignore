@@ -41,3 +41,5 @@ pids
 
 # OS generated files
 Thumbs.db
+# Local Netlify folder
+.netlify
