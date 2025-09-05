@@ -145,7 +145,7 @@ const TimelineLine = styled.div`
   background: var(--light-blue);
   width: 2px;
   height: auto;
-  min-height: 300px;
+  min-height: 100%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -162,6 +162,7 @@ const TimelineItem = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  min-height: 120px;
 
   &::before {
     content: '';
@@ -173,6 +174,9 @@ const TimelineItem = styled.div`
     z-index: 2;
     border: 3px solid var(--white);
     box-shadow: 0 2px 10px var(--shadow-light);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
     @media (max-width: 992px) {
       display: none;
@@ -182,7 +186,7 @@ const TimelineItem = styled.div`
 
 const ItemInfo = styled.div`
   position: absolute;
-  width: clamp(250px, 40vw, 300px);
+  width: clamp(280px, 42vw, 360px);
   display: flex;
   align-items: center;
   gap: var(--space-lg);
@@ -193,11 +197,13 @@ const ItemInfo = styled.div`
   transition: all 0.3s ease;
 
   &.left {
-    right: clamp(1rem, 8vw, 2.5rem);
+    right: calc(50% + 2.5rem);
+    text-align: left;
   }
 
   &.right {
-    left: clamp(1rem, 8vw, 2.5rem);
+    left: calc(50% + 2.5rem);
+    text-align: left;
   }
 
   &:hover {
@@ -313,12 +319,17 @@ const SkillTitleText = styled.span`
 
 const SkillCategories = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(0.75rem, 2.5vw, 1rem);
   width: 100%;
+  align-items: start;
+  justify-items: stretch;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 
   @media (max-width: 480px) {
-    grid-template-columns: 1fr;
     gap: var(--space-sm);
   }
 `;
@@ -327,21 +338,23 @@ const Skill = styled.div`
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-md);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  width: 100%;
+  min-height: 52px;
 
   &:hover {
     background: rgba(255, 255, 255, 0.2);
-    transform: translateX(5px);
+    transform: translateY(-2px);
   }
 `;
 
 const SkillIconSmall = styled.div`
   color: var(--secondary-blue);
-  font-size: var(--text-lg);
+  font-size: 1rem;
   flex-shrink: 0;
 `;
 
@@ -350,19 +363,19 @@ const SkillInfo = styled.div`
   flex-direction: column;
   gap: 2px;
   min-width: 0;
+  width: 100%;
 `;
 
 const SkillName = styled.h5`
-  font-size: clamp(0.85rem, 2vw, 1rem);
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
   font-weight: 600;
   color: var(--white);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: anywhere;
 `;
 
 const SkillLevel = styled.span`
-  font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+  font-size: clamp(0.8rem, 2.5vw, 0.95rem);
   color: rgba(255, 255, 255, 0.8);
 `;
 
