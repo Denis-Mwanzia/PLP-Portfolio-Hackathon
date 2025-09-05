@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaDownload, FaLinkedin, FaGithub } from 'react-icons/fa';
+import Tilt from 'react-parallax-tilt';
+import Typewriter from 'typewriter-effect';
 
 const HeroSection = styled.section`
   display: flex;
@@ -9,8 +11,59 @@ const HeroSection = styled.section`
   justify-content: center;
   min-height: 100vh;
   padding: var(--space-xl);
-  background: linear-gradient(135deg, var(--off-white) 0%, var(--white) 100%);
   position: relative;
+  background: linear-gradient(135deg, #f9fafc, #eef5ff);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 20% 20%,
+        rgba(0, 119, 255, 0.06),
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba(0, 180, 255, 0.06),
+        transparent 50%
+      );
+    animation: floatBackground 8s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+
+  @keyframes floatBackground {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(15px);
+    }
+  }
+`;
+
+const Particle = styled.div`
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 119, 255, 0.2);
+  border-radius: 50%;
+  top: ${(props) => props.top};
+  left: ${(props) => props.left};
+  animation: floatParticle ${(props) => props.duration}s linear infinite;
+
+  @keyframes floatParticle {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-20px) scale(1.2);
+      opacity: 0.6;
+    }
+  }
 `;
 
 const HeroContainer = styled.div`
@@ -20,10 +73,11 @@ const HeroContainer = styled.div`
   gap: clamp(2rem, 8vw, 5rem);
   max-width: var(--container-xl);
   width: 100%;
+  position: relative;
+  z-index: 2;
 
   @media (max-width: 992px) {
     flex-direction: column;
-    gap: var(--space-2xl);
     text-align: center;
   }
 `;
@@ -33,26 +87,26 @@ const ProfileContainer = styled.div`
   width: clamp(200px, 25vw, 260px);
   height: clamp(200px, 25vw, 260px);
   flex-shrink: 0;
-  order: 1;
-
-  @media (max-width: 992px) {
-    order: 1;
-  }
 `;
 
 const ProfileBorder = styled.div`
-  width: 100%;
-  height: 100%;
   border-radius: 50%;
   padding: 5px;
-  background: linear-gradient(
-    45deg,
-    var(--primary-blue),
-    var(--secondary-blue)
-  );
-  animation: rotate 8s linear infinite;
-  position: relative;
-  z-index: 1;
+  background: linear-gradient(135deg, #0077ff, #00c6ff, #0077ff);
+  background-size: 300% 300%;
+  animation: glowing 8s ease infinite;
+
+  @keyframes glowing {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 `;
 
 const ProfileImage = styled.img`
@@ -60,70 +114,42 @@ const ProfileImage = styled.img`
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--white);
-  position: relative;
-  z-index: 2;
-  transition: transform 0.5s ease;
-`;
-
-const ProfileShadow = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(58, 123, 213, 0.2) 0%,
-    transparent 70%
-  );
-  top: 0;
-  left: 0;
-  z-index: 0;
-  animation: pulse 4s ease-in-out infinite;
+  border: 3px solid white;
+  transition: transform 0.4s ease;
 `;
 
 const HeroContent = styled.div`
   flex: 1;
   max-width: 600px;
-  text-align: center;
-  order: 2;
-
-  @media (max-width: 992px) {
-    order: 2;
-  }
 `;
 
 const HeroGreeting = styled.p`
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   font-weight: 600;
   color: var(--medium-gray);
-  margin-bottom: var(--space-sm);
 `;
 
 const HeroTitle = styled.h1`
   font-size: clamp(2rem, 8vw, 3.5rem);
-  font-weight: 700;
+  font-weight: 800;
   margin: var(--space-sm) 0;
   line-height: 1.1;
 `;
 
 const TitlePart = styled.span`
   display: block;
-  background: linear-gradient(
-    90deg,
-    var(--primary-blue),
-    var(--secondary-blue)
-  );
+  background: linear-gradient(90deg, #0077ff, #00c6ff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 `;
 
-const HeroSubtitle = styled.p`
+const HeroSubtitle = styled.div`
   font-size: clamp(1rem, 3vw, 1.3rem);
   font-weight: 500;
   color: var(--text-gray);
   margin-bottom: var(--space-xl);
+  min-height: 30px;
 `;
 
 const HeroActions = styled.div`
@@ -132,65 +158,60 @@ const HeroActions = styled.div`
   gap: var(--space-lg);
   margin: var(--space-xl) 0;
   flex-wrap: wrap;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-md);
-  }
 `;
 
 const Button = styled.a`
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1.5rem, 4vw, 2rem);
-  border-radius: var(--radius-full);
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
   font-weight: 600;
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
-  transition: all 0.3s ease;
+  font-size: 1rem;
   position: relative;
-  overflow: hidden;
-  z-index: 1;
-  min-width: 140px;
-  justify-content: center;
   text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  @media (max-width: 768px) {
-    width: 100%;
-    max-width: 250px;
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 10px rgba(0, 119, 255, 0.4);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
   }
 `;
 
 const PrimaryButton = styled(Button)`
-  background: var(--white);
-  color: var(--primary-blue);
+  background: white;
   border: 2px solid var(--primary-blue);
+  color: var(--primary-blue);
 
-  &:hover {
+  &:hover::after {
     background: var(--light-gray);
-    box-shadow: 0 5px 15px rgba(58, 123, 213, 0.2);
-    transform: translateY(-2px);
+    opacity: 1;
   }
 `;
 
 const SecondaryButton = styled(Button)`
   background: var(--primary-blue);
-  color: var(--white);
+  color: white;
   border: 2px solid var(--primary-blue);
 
-  &:hover {
+  &:hover::after {
     background: var(--hover-blue);
-    box-shadow: 0 5px 15px rgba(58, 123, 213, 0.3);
-    transform: translateY(-2px);
-  }
-`;
-
-const ButtonIcon = styled.span`
-  transition: transform 0.3s ease;
-
-  ${Button}:hover & {
-    transform: translateX(3px);
+    opacity: 1;
   }
 `;
 
@@ -199,157 +220,132 @@ const SocialLinks = styled.div`
   justify-content: center;
   gap: var(--space-lg);
   margin-top: var(--space-lg);
-
-  @media (max-width: 768px) {
-    gap: var(--space-md);
-  }
 `;
 
 const SocialLink = styled.a`
-  position: relative;
-  width: 42px;
-  height: 42px;
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.3s ease;
-  background: var(--white);
-  box-shadow: 0 2px 10px var(--shadow-light);
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 119, 255, 0.1);
   color: var(--primary-blue);
-  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 20px var(--shadow-medium);
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 119, 255, 0.3);
   }
 `;
 
-const ScrollIndicator = styled.div`
+const ScrollIndicator = styled.a`
   position: absolute;
   bottom: var(--space-xl);
   left: 50%;
   transform: translateX(-50%);
-`;
+  font-size: 1.5rem;
+  color: var(--primary-blue);
+  cursor: pointer;
+  animation: bounce 2s infinite;
 
-const ScrollLine = styled.div`
-  width: 1px;
-  height: 50px;
-  background: linear-gradient(to bottom, var(--primary-blue), transparent);
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    background: var(--primary-blue);
-    border-radius: 50%;
-    transform: translate(-50%, 0);
-    animation: scrollBounce 2s infinite;
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, 10px);
+    }
   }
 `;
 
 const Hero = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  };
-
   return (
     <HeroSection id="home">
+      {/* Floating particles */}
+      {[...Array(8)].map((_, i) => (
+        <Particle
+          key={i}
+          top={`${Math.random() * 90}%`}
+          left={`${Math.random() * 90}%`}
+          duration={8 + i}
+        />
+      ))}
+
       <HeroContainer>
-        <ProfileContainer>
-          <ProfileBorder>
-            <ProfileImage
-              src="/assets/homeImage.jpg"
-              alt="Denis Mwanzia"
-              loading="eager"
-            />
-          </ProfileBorder>
-          <ProfileShadow />
-        </ProfileContainer>
+        <Tilt
+          tiltMaxAngleX={10}
+          tiltMaxAngleY={10}
+          perspective={1000}
+          scale={1.05}
+        >
+          <ProfileContainer>
+            <ProfileBorder>
+              <ProfileImage src="/assets/homeImage.jpg" alt="Denis Mwanzia" />
+            </ProfileBorder>
+          </ProfileContainer>
+        </Tilt>
 
         <HeroContent>
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <motion.div variants={itemVariants}>
-              <HeroGreeting>Hello, I'm</HeroGreeting>
-            </motion.div>
+            <HeroGreeting>Hello, I'm</HeroGreeting>
+            <HeroTitle>
+              <TitlePart>Denis</TitlePart>
+              <TitlePart>Mwanzia</TitlePart>
+            </HeroTitle>
+            <HeroSubtitle>
+              <Typewriter
+                options={{
+                  strings: [
+                    'Full-Stack Developer',
+                    'IT Specialist',
+                    'Problem Solver',
+                    'Tech Enthusiast',
+                  ],
+                  autoStart: true,
+                  loop: true,
+                  delay: 50,
+                }}
+              />
+            </HeroSubtitle>
+            <p style={{ color: 'var(--medium-gray)', marginTop: '0.5rem' }}>
+              Crafting seamless digital experiences for the web & beyond.
+            </p>
 
-            <motion.div variants={itemVariants}>
-              <HeroTitle>
-                <TitlePart>Denis</TitlePart>
-                <TitlePart>Mwanzia</TitlePart>
-              </HeroTitle>
-            </motion.div>
+            <HeroActions>
+              <PrimaryButton href="/assets/resume.pdf" download>
+                <FaDownload /> Download CV
+              </PrimaryButton>
+              <SecondaryButton href="#contact">
+                🚀 Let's Connect
+              </SecondaryButton>
+            </HeroActions>
 
-            <motion.div variants={itemVariants}>
-              <HeroSubtitle>Full-Stack Developer & IT Specialist</HeroSubtitle>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <HeroActions>
-                <PrimaryButton href="/assets/resume.pdf" download>
-                  <span>Download CV</span>
-                  <ButtonIcon>
-                    <FaDownload />
-                  </ButtonIcon>
-                </PrimaryButton>
-                <SecondaryButton href="#contact">
-                  <span>Let's Connect</span>
-                  <ButtonIcon>→</ButtonIcon>
-                </SecondaryButton>
-              </HeroActions>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <SocialLinks>
-                <SocialLink
-                  href="https://www.linkedin.com/in/denis-mwanzia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedin size={20} />
-                </SocialLink>
-                <SocialLink
-                  href="https://github.com/Denis-Mwanzia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                >
-                  <FaGithub size={20} />
-                </SocialLink>
-              </SocialLinks>
-            </motion.div>
+            <SocialLinks>
+              <SocialLink
+                href="https://www.linkedin.com/in/denis-mwanzia"
+                target="_blank"
+              >
+                <FaLinkedin size={20} />
+              </SocialLink>
+              <SocialLink
+                href="https://github.com/Denis-Mwanzia"
+                target="_blank"
+              >
+                <FaGithub size={20} />
+              </SocialLink>
+            </SocialLinks>
           </motion.div>
         </HeroContent>
       </HeroContainer>
 
-      <ScrollIndicator>
-        <ScrollLine />
-      </ScrollIndicator>
+      <ScrollIndicator href="#about">⬇</ScrollIndicator>
     </HeroSection>
   );
 };
