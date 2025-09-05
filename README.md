@@ -4,7 +4,9 @@ A modern, responsive portfolio website built with React, showcasing my skills, p
 
 ## 🌟 Live Demo
 
-🔗 **[View Live Portfolio](https://denis-mwanzia-portfolio.netlify.app/)**
+🔗 **[View Live Portfolio](https://denismwanzia.netlify.app/)**
+
+- **Production URL**: <https://denismwanzia.netlify.app/>
 
 ## ✨ Features
 
