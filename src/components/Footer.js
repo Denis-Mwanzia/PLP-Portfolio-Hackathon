@@ -190,9 +190,10 @@ const Footer = () => {
               <FooterAbout>
                 <FooterTitle>Denis Mwanzia</FooterTitle>
                 <FooterDescription>
-                  A passionate developer creating beautiful, functional websites
-                  and applications. Specializing in full-stack development with
-                  modern technologies and best practices.
+                  Full‑stack developer focused on scalable, accessible web apps.
+                  Experienced across web based applications, AI‑assisted features, and
+                  internal tools. Pragmatic about performance, DX and
+                  maintainability.
                 </FooterDescription>
                 <SocialLinks>
                   {socialLinks.map((link) => (
