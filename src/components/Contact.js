@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
   FaEnvelope,
@@ -9,6 +9,7 @@ import {
   FaPaperPlane,
 } from 'react-icons/fa';
 
+// ===== Styled Components =====
 const ContactSection = styled.section`
   background-color: var(--off-white);
   padding: clamp(3rem, 8vw, 5rem) 0;
@@ -47,7 +48,6 @@ const SubTitle = styled.p`
   color: var(--medium-gray);
   position: relative;
   padding-bottom: var(--space-md);
-
   &::after {
     content: '';
     position: absolute;
@@ -70,7 +70,6 @@ const ContactContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: clamp(2rem, 6vw, 3rem);
   margin-top: var(--space-xl);
-
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: var(--space-xl);
@@ -92,16 +91,9 @@ const ContactItem = styled.div`
   border-radius: var(--radius-lg);
   box-shadow: 0 3px 15px var(--shadow-light);
   transition: all 0.3s ease;
-
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px var(--shadow-medium);
-  }
-
-  @media (max-width: 360px) {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--space-sm);
   }
 `;
 
@@ -125,7 +117,6 @@ const ContactTitle = styled.h4`
 
 const ContactText = styled.p`
   color: var(--medium-gray);
-  transition: color 0.3s ease;
   font-size: clamp(0.9rem, 2vw, 1rem);
   word-break: break-word;
 `;
@@ -136,7 +127,6 @@ const ContactLink = styled.a`
   font-size: clamp(0.9rem, 2vw, 1rem);
   word-break: break-word;
   text-decoration: none;
-
   &:hover {
     color: var(--primary-blue);
   }
@@ -163,18 +153,12 @@ const FormInput = styled.input`
   border-radius: var(--radius-lg);
   font-size: clamp(0.9rem, 2vw, 1rem);
   transition: all 0.3s ease;
-  font-family: var(--font-main);
   background: var(--white);
-
   &:focus {
     border-color: var(--primary-blue);
     outline: none;
     box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.1);
     transform: translateY(-1px);
-  }
-
-  &::placeholder {
-    color: var(--medium-gray);
   }
 `;
 
@@ -185,24 +169,18 @@ const FormTextarea = styled.textarea`
   border-radius: var(--radius-lg);
   font-size: clamp(0.9rem, 2vw, 1rem);
   transition: all 0.3s ease;
-  font-family: var(--font-main);
   background: var(--white);
   resize: vertical;
   min-height: 120px;
-
   &:focus {
     border-color: var(--primary-blue);
     outline: none;
     box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.1);
     transform: translateY(-1px);
   }
-
-  &::placeholder {
-    color: var(--medium-gray);
-  }
 `;
 
-const SubmitButton = styled.button`
+const SubmitButton = styled(motion.button)`
   background: linear-gradient(
     90deg,
     var(--primary-blue),
@@ -214,42 +192,33 @@ const SubmitButton = styled.button`
   border-radius: var(--radius-full);
   font-size: clamp(0.9rem, 2vw, 1rem);
   cursor: pointer;
-  transition: all 0.3s ease;
-  align-self: flex-start;
   font-weight: 600;
-  letter-spacing: 0.5px;
   box-shadow: 0 4px 15px rgba(58, 123, 213, 0.25);
-  min-width: 150px;
   display: flex;
   align-items: center;
   gap: var(--space-sm);
   justify-content: center;
-
+  min-width: 150px;
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(58, 123, 213, 0.35);
   }
-
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
-    transform: none;
   }
 `;
 
-const FormMessage = styled.div`
+const FormMessage = styled(motion.div)`
   padding: 1rem;
   border-radius: var(--radius-md);
   margin-top: 1rem;
   font-weight: 500;
-  animation: fadeInUp 0.3s ease;
-
   &.success {
     background: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
   }
-
   &.error {
     background: #f8d7da;
     color: #721c24;
@@ -261,9 +230,9 @@ const FieldError = styled.div`
   color: #dc3545;
   font-size: 0.875rem;
   margin-top: 0.25rem;
-  animation: fadeInUp 0.3s ease;
 `;
 
+// ===== Contact Component =====
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -274,76 +243,51 @@ const Contact = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState(null);
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: '',
-      }));
-    }
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const validateForm = () => {
     const newErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!isValidEmail(formData.email)) {
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
       newErrors.email = 'Please enter a valid email address';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    }
-
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validateForm()) return;
-
     setIsSubmitting(true);
     setSubmitMessage(null);
 
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      setSubmitMessage({
-        type: 'success',
-        text: "Message sent successfully! I'll get back to you soon.",
+      const response = await fetch('https://formspree.io/f/xnnbljlo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
 
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      });
+      if (response.ok) {
+        setSubmitMessage({
+          type: 'success',
+          text: "Message sent successfully! I'll get back to you soon.",
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setSubmitMessage(null), 5000);
+      } else {
+        throw new Error('Formspree submission failed');
+      }
     } catch (error) {
       setSubmitMessage({
         type: 'error',
@@ -358,10 +302,7 @@ const Contact = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.2, delayChildren: 0.1 },
     },
   };
 
@@ -383,6 +324,7 @@ const Contact = () => {
         </SectionTitle>
 
         <ContactContainer ref={ref}>
+          {/* Contact Info */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -401,7 +343,6 @@ const Contact = () => {
                     </ContactLink>
                   </ContactContent>
                 </ContactItem>
-
                 <ContactItem>
                   <ContactIcon>
                     <FaPhone />
@@ -413,7 +354,6 @@ const Contact = () => {
                     </ContactLink>
                   </ContactContent>
                 </ContactItem>
-
                 <ContactItem>
                   <ContactIcon>
                     <FaMapMarkerAlt />
@@ -427,6 +367,7 @@ const Contact = () => {
             </motion.div>
           </motion.div>
 
+          {/* Contact Form */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -445,7 +386,6 @@ const Contact = () => {
                   />
                   {errors.name && <FieldError>{errors.name}</FieldError>}
                 </FormGroup>
-
                 <FormGroup>
                   <FormInput
                     type="email"
@@ -457,7 +397,6 @@ const Contact = () => {
                   />
                   {errors.email && <FieldError>{errors.email}</FieldError>}
                 </FormGroup>
-
                 <FormGroup>
                   <FormInput
                     type="text"
@@ -467,7 +406,6 @@ const Contact = () => {
                     onChange={handleInputChange}
                   />
                 </FormGroup>
-
                 <FormGroup>
                   <FormTextarea
                     name="message"
@@ -478,17 +416,33 @@ const Contact = () => {
                   />
                   {errors.message && <FieldError>{errors.message}</FieldError>}
                 </FormGroup>
-
-                <SubmitButton type="submit" disabled={isSubmitting}>
-                  <FaPaperPlane />
+                <SubmitButton
+                  type="submit"
+                  disabled={isSubmitting}
+                  animate={
+                    isSubmitting ? { scale: [1, 1.05, 1] } : { scale: 1 }
+                  }
+                  transition={
+                    isSubmitting
+                      ? { repeat: Infinity, duration: 0.6, ease: 'easeInOut' }
+                      : {}
+                  }
+                >
+                  <FaPaperPlane />{' '}
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </SubmitButton>
-
-                {submitMessage && (
-                  <FormMessage className={submitMessage.type}>
-                    {submitMessage.text}
-                  </FormMessage>
-                )}
+                <AnimatePresence>
+                  {submitMessage && (
+                    <FormMessage
+                      className={submitMessage.type}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                    >
+                      {submitMessage.text}
+                    </FormMessage>
+                  )}
+                </AnimatePresence>
               </ContactForm>
             </motion.div>
           </motion.div>
