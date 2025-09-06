@@ -283,7 +283,7 @@ const Hero = () => {
         >
           <ProfileContainer>
             <ProfileBorder>
-              <ProfileImage src="/assets/homeImage.jpg" alt="Denis Mwanzia" />
+              <ProfileImage src="/assets/passport.jpg" alt="Denis Mwanzia" />
             </ProfileBorder>
           </ProfileContainer>
         </Tilt>
