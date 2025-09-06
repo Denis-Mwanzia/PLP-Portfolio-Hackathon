@@ -409,7 +409,7 @@ const Projects = () => {
         'A modern, responsive portfolio website showcasing creative work with smooth animations, interactive elements, and optimized performance. Built with vanilla HTML, CSS, and JavaScript, demonstrating mastery of fundamental web technologies.',
       image: '/assets/uiUx.jpg',
       github: 'https://github.com/Denis-Mwanzia/PLP-Portfolio-Hackathon.git',
-      live: 'https://denis-mwanzia-portfolio.netlify.app/',
+      live: 'https://denismwanzia.netlify.app/',
       date: 'February 2025',
     },
   ];
