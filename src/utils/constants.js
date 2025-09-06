@@ -143,7 +143,7 @@ export const PROJECTS_DATA = [
     technologies: ['Python', 'Machine Learning', 'Naive Bayes', 'SVM', 'NLTK'],
   },
   {
-    id: 'fullstack1',
+    id: 'fullstack2',
     title: 'Mwananchi E-store',
     category: 'fullstack',
     description:
@@ -153,6 +153,18 @@ export const PROJECTS_DATA = [
     live: null,
     date: 'October 2023',
     technologies: ['Django', 'Python', 'HTML', 'CSS', 'JavaScript', 'MySQL'],
+  },
+  {
+    id: 'fullstack1',
+    title: 'Tuko Maji',
+    category: 'fullstack',
+    description:
+      'Tuko Maji is a community-driven platform that empowers citizens to report water-related issues, enables verifiers to validate them, and equips technicians with tools to resolve them.',
+    image: '/assets/tukomaji.png',
+    github:
+      'https://github.com/PLP-MERN-Stack-Development/week-8-capstone_-Denis-Mwanzia.git',
+    live: 'https://tukomaji-app.onrender.com/',
+    date: 'July 2023',
   },
   {
     id: 'frontend2',

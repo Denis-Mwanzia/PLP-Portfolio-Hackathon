@@ -366,6 +366,30 @@ const Projects = () => {
 
   const projects = [
     {
+      id: 'fullstack1',
+      title: 'Tuko Maji',
+      category: 'fullstack',
+      description:
+        'Tuko Maji is a community-driven platform that empowers citizens to report water-related issues, enables verifiers to validate them, and equips technicians with tools to resolve them.',
+      image: '/assets/tukomaji.png',
+      github:
+        'https://github.com/PLP-MERN-Stack-Development/week-8-capstone_-Denis-Mwanzia.git',
+      live: 'https://tukomaji-app.onrender.com/',
+      date: 'July 2023',
+    },
+    {
+      id: 'fullstack2',
+      title: 'Mwananchi E-store',
+      category: 'fullstack',
+      description:
+        'A comprehensive e-commerce platform developed as part of my Final Year Project. This system was designed to integrate seamlessly with the sentiment analysis model, providing a complete solution for online retail with intelligent customer feedback processing.',
+      image: '/assets/ecommerce.jpg',
+      github: 'https://github.com/Denis-Mwanzia/Mwananchi_Estore.git',
+      live: null,
+      date: 'October 2023',
+      technologies: ['Django', 'Python', 'HTML', 'CSS', 'JavaScript', 'MySQL'],
+    },
+    {
       id: 'ai1',
       title: 'Sentiment Analysis Of Customer Reviews',
       category: 'ai',
@@ -378,17 +402,6 @@ const Projects = () => {
       date: 'October 2023',
     },
     {
-      id: 'fullstack1',
-      title: 'Mwananchi E-store',
-      category: 'fullstack',
-      description:
-        'A comprehensive e-commerce platform developed as part of my Final Year Project. This system was designed to integrate seamlessly with the sentiment analysis model, providing a complete solution for online retail with intelligent customer feedback processing.',
-      image: '/assets/ecommerce.jpg',
-      github: 'https://github.com/Denis-Mwanzia/Mwananchi_Estore.git',
-      live: null,
-      date: 'October 2023',
-    },
-    {
       id: 'frontend2',
       title: 'Portfolio Website',
       category: 'frontend',
@@ -397,7 +410,7 @@ const Projects = () => {
       image: '/assets/uiUx.jpg',
       github: 'https://github.com/Denis-Mwanzia/PLP-Portfolio-Hackathon.git',
       live: 'https://denis-mwanzia-portfolio.netlify.app/',
-      date: 'January 2025',
+      date: 'February 2025',
     },
   ];
 
