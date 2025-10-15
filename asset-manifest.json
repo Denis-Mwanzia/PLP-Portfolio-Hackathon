@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/PLP-Portfolio-Hackathon/static/css/main.c51df31b.css",
+    "main.js": "/PLP-Portfolio-Hackathon/static/js/main.f1b7e8bd.js",
+    "index.html": "/PLP-Portfolio-Hackathon/index.html",
+    "main.c51df31b.css.map": "/PLP-Portfolio-Hackathon/static/css/main.c51df31b.css.map",
+    "main.f1b7e8bd.js.map": "/PLP-Portfolio-Hackathon/static/js/main.f1b7e8bd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c51df31b.css",
+    "static/js/main.f1b7e8bd.js"
+  ]
+}
