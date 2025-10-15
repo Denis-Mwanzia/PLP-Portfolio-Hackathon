@@ -34,8 +34,9 @@ export const PROJECT_FILTERS = [
 
 export const RESUME_TABS = [
   { id: 'education', label: 'Education', icon: 'FaGraduationCap' },
-  { id: 'experience', label: 'Experience', icon: 'FaBriefcase' },
+  { id: 'certifications', label: 'Certifications', icon: 'FaCertificate' },
   { id: 'skills', label: 'Personal Skills', icon: 'FaUserCog' },
+  { id: 'experience', label: 'Experience', icon: 'FaBriefcase' },
 ];
 
 export const EDUCATION_DATA = [
@@ -64,6 +65,12 @@ export const EDUCATION_DATA = [
     date: '2025-Present',
     icon: 'FaGraduationCap',
   },
+  {
+    title: 'AI Literacy Certified Course',
+    subtitle: 'Otermans Institute',
+    date: '2025-2025',
+    icon: 'FaGraduationCap',
+  },
 ];
 
 export const EXPERIENCE_DATA = [
@@ -78,6 +85,50 @@ export const EXPERIENCE_DATA = [
     subtitle: 'Self-Employed',
     date: '2023-Present',
     icon: 'FaBriefcase',
+  },
+];
+
+export const CERTIFICATIONS_DATA = [
+  {
+    title: 'SQL Training Certificate',
+    subtitle: 'Learnomate Technologies Pvt Ltd',
+    date: '2024',
+    icon: 'FaCertificate',
+    credentialId: 'SQL-2024-001',
+    issuer: 'Learnomate Technologies',
+    skills: ['SQL', 'Database Management', 'Data Analysis'],
+    pdfUrl: '/assets/certificates/sql-certificate.pdf',
+    description:
+      'Comprehensive SQL training covering database design, query optimization, and data analysis techniques.',
+  },
+  {
+    title: 'Cybersecurity and Emerging Technologies Awareness Training',
+    subtitle: 'ICT Authority Smart Academy',
+    date: '2024',
+    icon: 'FaCertificate',
+    credentialId: 'CYBER-2024-002',
+    issuer: 'ICT Authority Kenya',
+    skills: ['Cybersecurity', 'Network Security', 'Emerging Technologies'],
+    pdfUrl: '/assets/certificates/cybersecurity-certificate.pdf',
+    description:
+      'Advanced training in cybersecurity fundamentals, threat assessment, and emerging technology security protocols.',
+  },
+  {
+    title: 'AI Literacy Certified Course',
+    subtitle: 'Otermans Institute',
+    date: '2025',
+    icon: 'FaCertificate',
+    credentialId: 'OIAI25-ER35KX',
+    issuer: 'Otermans Institute',
+    skills: [
+      'AI Literacy',
+      'Artificial Intelligence',
+      'Machine Learning',
+      'AI Ethics',
+    ],
+    pdfUrl: '/assets/certificates/OIAI25-ER35KX.pdf',
+    description:
+      'Comprehensive AI literacy program covering artificial intelligence fundamentals, machine learning concepts, and AI ethics in modern technology.',
   },
 ];
 
@@ -177,6 +228,48 @@ export const PROJECTS_DATA = [
     live: 'https://denismwanzia.netlify.app/',
     date: 'January 2025',
     technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design'],
+  },
+  {
+    id: 'fullstack3',
+    title: 'Kitui Reforest AI',
+    category: 'fullstack',
+    description:
+      'A comprehensive environmental restoration platform for Kitui County featuring AI-powered species recommendations, GIS mapping with NDVI analysis, real-time weather integration, and community engagement tools. Built for the Land ReGen Hackathon 2025 with advanced climate intelligence and collaborative project tracking.',
+    image: '/assets/kitui_AI.png',
+    github: 'https://github.com/Denis-Mwanzia/LandReGenHackathon2025.git',
+    live: 'https://kitui-reforest-ai.onrender.com/',
+    date: 'October 2025',
+    technologies: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Supabase',
+      'Leaflet Maps',
+      'AI Integration',
+      'OpenWeather API',
+      'PostgreSQL',
+    ],
+  },
+  {
+    id: 'ai2',
+    title: 'Kitui Reforest AI',
+    category: 'ai',
+    description:
+      'A comprehensive environmental restoration platform for Kitui County featuring AI-powered species recommendations, GIS mapping with NDVI analysis, real-time weather integration, and community engagement tools. Built for the Land ReGen Hackathon 2025 with advanced climate intelligence and collaborative project tracking.',
+    image: '/assets/kitui_AI.png',
+    github: 'https://github.com/Denis-Mwanzia/LandReGenHackathon2025.git',
+    live: 'https://kitui-reforest-ai.onrender.com/',
+    date: 'October 2025',
+    technologies: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Supabase',
+      'Leaflet Maps',
+      'AI Integration',
+      'OpenWeather API',
+      'PostgreSQL',
+    ],
   },
 ];
 

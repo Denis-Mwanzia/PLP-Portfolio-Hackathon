@@ -6,21 +6,52 @@ const spin = keyframes`
   100% { transform: rotate(360deg); }
 `;
 
+const pulse = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+`;
+
 const SpinnerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, var(--off-white) 0%, var(--white) 100%);
+  height: ${(props) => props.height || '100vh'};
+  width: ${(props) => props.width || '100%'};
+  background: ${(props) =>
+    props.background ||
+    'linear-gradient(135deg, var(--off-white) 0%, var(--white) 100%)'};
 `;
 
 const Spinner = styled.div`
-  width: 50px;
-  height: 50px;
+  width: ${(props) => props.size || '50px'};
+  height: ${(props) => props.size || '50px'};
   border: 4px solid var(--light-gray);
   border-top: 4px solid var(--primary-blue);
   border-radius: 50%;
   animation: ${spin} 1s linear infinite;
+`;
+
+const DotSpinner = styled.div`
+  display: flex;
+  gap: 4px;
+
+  div {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    animation: ${pulse} 1.4s ease-in-out infinite both;
+
+    &:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+    &:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0s;
+    }
+  }
 `;
 
 const LoadingText = styled.p`
@@ -36,12 +67,28 @@ const LoadingContainer = styled.div`
   align-items: center;
 `;
 
-const LoadingSpinner = ({ text = 'Loading...' }) => {
+const LoadingSpinner = ({
+  text = 'Loading...',
+  variant = 'spinner',
+  size = '50px',
+  height,
+  width,
+  background,
+  showText = true,
+}) => {
   return (
-    <SpinnerContainer>
+    <SpinnerContainer height={height} width={width} background={background}>
       <LoadingContainer>
-        <Spinner />
-        <LoadingText>{text}</LoadingText>
+        {variant === 'dots' ? (
+          <DotSpinner>
+            <div></div>
+            <div></div>
+            <div></div>
+          </DotSpinner>
+        ) : (
+          <Spinner size={size} />
+        )}
+        {showText && <LoadingText>{text}</LoadingText>}
       </LoadingContainer>
     </SpinnerContainer>
   );

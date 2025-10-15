@@ -12,7 +12,14 @@ const HeroSection = styled.section`
   min-height: 100vh;
   padding: var(--space-xl);
   position: relative;
-  background: linear-gradient(135deg, #f9fafc, #eef5ff);
+  background: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #e2e8f0 25%,
+    #f1f5f9 50%,
+    #e0f2fe 75%,
+    #f0f9ff 100%
+  );
   overflow: hidden;
 
   &::before {
@@ -21,24 +28,58 @@ const HeroSection = styled.section`
     inset: 0;
     background: radial-gradient(
         circle at 20% 20%,
-        rgba(0, 119, 255, 0.06),
+        rgba(59, 130, 246, 0.08),
         transparent 50%
       ),
       radial-gradient(
         circle at 80% 70%,
-        rgba(0, 180, 255, 0.06),
+        rgba(16, 185, 129, 0.06),
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 40% 80%,
+        rgba(139, 92, 246, 0.05),
         transparent 50%
       );
-    animation: floatBackground 8s ease-in-out infinite alternate;
+    animation: floatBackground 12s ease-in-out infinite alternate;
     z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 70%
+    );
+    animation: shimmer 3s ease-in-out infinite;
+    z-index: 1;
   }
 
   @keyframes floatBackground {
     0% {
-      transform: translateY(0);
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(1deg);
     }
     100% {
-      transform: translateY(15px);
+      transform: translateY(15px) rotate(-1deg);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
     }
   }
 `;

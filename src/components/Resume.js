@@ -10,6 +10,10 @@ import {
   FaServer,
   FaNetworkWired,
   FaTools,
+  FaCertificate,
+  FaEye,
+  FaDownload,
+  FaTimes,
 } from 'react-icons/fa';
 
 const ResumeSection = styled.section`
@@ -90,26 +94,58 @@ const TabButton = styled.button`
   align-items: center;
   gap: var(--space-sm);
   font-size: clamp(1rem, 2.5vw, 1.18rem);
-  font-weight: 500;
-  padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+  font-weight: 600;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1.25rem, 3vw, 2rem);
   border-radius: var(--radius-full);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background: var(--white);
   color: var(--text-gray);
   border: 2px solid transparent;
-  box-shadow: 0 2px 10px var(--shadow-light);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
 
   &.active {
     color: var(--white);
-    background: var(--primary-blue);
+    background: linear-gradient(
+      135deg,
+      var(--primary-blue),
+      var(--secondary-blue)
+    );
     border-color: var(--primary-blue);
-    box-shadow: 0 4px 15px rgba(58, 123, 213, 0.3);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    transform: translateY(-2px);
+  }
+
+  &.active::before {
+    display: none;
   }
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px var(--shadow-medium);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  &:hover::before {
+    left: 100%;
   }
 
   @media (max-width: 480px) {
@@ -124,6 +160,7 @@ const TabContent = styled.div`
   width: 100%;
   justify-content: center;
   margin-bottom: var(--space-xl);
+  padding-top: 1rem;
 `;
 
 const TimelineContainer = styled.div`
@@ -134,10 +171,11 @@ const TimelineContainer = styled.div`
   gap: clamp(3rem, 8vw, 8rem);
   width: 100%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 2rem auto 0;
 
   @media (max-width: 992px) {
     gap: var(--space-xl);
+    margin-top: 1.5rem;
   }
 `;
 
@@ -195,6 +233,7 @@ const ItemInfo = styled.div`
   border-radius: var(--radius-lg);
   box-shadow: 0 5px 20px var(--shadow-light);
   transition: all 0.3s ease;
+  z-index: 1;
 
   &.left {
     right: calc(50% + 2.5rem);
@@ -251,6 +290,158 @@ const ItemDate = styled.span`
   padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-sm);
   font-weight: 500;
+`;
+
+const CredentialId = styled.div`
+  margin-top: var(--space-sm);
+  font-size: 0.8rem;
+  color: var(--medium-gray);
+  font-family: 'Courier New', monospace;
+  background: var(--light-gray);
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+`;
+
+const SkillsTags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+`;
+
+const SkillTag = styled.span`
+  background: var(--primary-blue);
+  color: var(--white);
+  font-size: 0.7rem;
+  padding: 2px var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+`;
+
+// PDF Viewer Modal Components
+const PDFModal = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+`;
+
+const ModalOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+`;
+
+const ModalContainer = styled(motion.div)`
+  position: relative;
+  background-color: var(--white);
+  border-radius: var(--radius-xl);
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 100%;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  overflow: hidden;
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: var(--off-white);
+  border-bottom: 1px solid var(--border-gray);
+`;
+
+const ModalTitle = styled.h3`
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--dark-gray);
+  margin: 0;
+`;
+
+const ModalActions = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+
+const ActionButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &.download {
+    background: var(--primary-blue);
+    color: var(--white);
+
+    &:hover {
+      background: var(--hover-blue);
+    }
+  }
+
+  &.close {
+    background: var(--light-gray);
+    color: var(--dark-gray);
+
+    &:hover {
+      background: var(--medium-gray);
+      color: var(--white);
+    }
+  }
+`;
+
+const PDFViewer = styled.div`
+  width: 100%;
+  height: 70vh;
+  min-height: 500px;
+  position: relative;
+`;
+
+const PDFFrame = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+`;
+
+const ViewCertificateButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--space-sm);
+  padding: 0.5rem 1rem;
+  background: var(--secondary-blue);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--primary-blue);
+    transform: translateY(-1px);
+  }
 `;
 
 const SkillsContainer = styled.div`
@@ -381,6 +572,7 @@ const SkillLevel = styled.span`
 
 const Resume = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
@@ -388,8 +580,9 @@ const Resume = () => {
 
   const tabs = [
     { id: 'education', label: 'Education', icon: FaGraduationCap },
-    { id: 'experience', label: 'Experience', icon: FaBriefcase },
+    { id: 'certifications', label: 'Certifications', icon: FaCertificate },
     { id: 'skills', label: 'Personal Skills', icon: FaUserCog },
+    { id: 'experience', label: 'Experience', icon: FaBriefcase },
   ];
 
   const educationData = [
@@ -418,6 +611,12 @@ const Resume = () => {
       date: '2025-Present',
       icon: FaGraduationCap,
     },
+    {
+      title: 'AI Literacy Certified Course',
+      subtitle: 'Otermans Institute',
+      date: '2025-2025',
+      icon: FaGraduationCap,
+    },
   ];
 
   const experienceData = [
@@ -432,6 +631,50 @@ const Resume = () => {
       subtitle: 'Self-Employed',
       date: '2023-Present',
       icon: FaBriefcase,
+    },
+  ];
+
+  const certificationsData = [
+    {
+      title: 'SQL Training Certificate',
+      subtitle: 'Learnomate Technologies Pvt Ltd',
+      date: '2024',
+      icon: FaCertificate,
+      credentialId: 'SQL-2024-001',
+      issuer: 'Learnomate Technologies',
+      skills: ['SQL', 'Database Management', 'Data Analysis'],
+      pdfUrl: '/assets/certificates/sql-certificate.pdf',
+      description:
+        'Comprehensive SQL training covering database design, query optimization, and data analysis techniques.',
+    },
+    {
+      title: 'Cybersecurity and Emerging Technologies Awareness Training',
+      subtitle: 'ICT Authority Smart Academy',
+      date: '2024',
+      icon: FaCertificate,
+      credentialId: 'CYBER-2024-002',
+      issuer: 'ICT Authority Kenya',
+      skills: ['Cybersecurity', 'Network Security', 'Emerging Technologies'],
+      pdfUrl: '/assets/certificates/cybersecurity-certificate.pdf',
+      description:
+        'Advanced training in cybersecurity fundamentals, threat assessment, and emerging technology security protocols.',
+    },
+    {
+      title: 'AI Literacy Certified Course',
+      subtitle: 'Otermans Institute',
+      date: '2025',
+      icon: FaCertificate,
+      credentialId: 'OIAI25-ER35KX',
+      issuer: 'Otermans Institute',
+      skills: [
+        'AI Literacy',
+        'Artificial Intelligence',
+        'Machine Learning',
+        'AI Ethics',
+      ],
+      pdfUrl: '/assets/certificates/OIAI25-ER35KX.pdf',
+      description:
+        'Comprehensive AI literacy program covering artificial intelligence fundamentals, machine learning concepts, and AI ethics in modern technology.',
     },
   ];
 
@@ -522,6 +765,62 @@ const Resume = () => {
     </TimelineContainer>
   );
 
+  const openCertificateViewer = (certificate) => {
+    setSelectedCertificate(certificate);
+  };
+
+  const closeCertificateViewer = () => {
+    setSelectedCertificate(null);
+  };
+
+  const downloadCertificate = (certificate) => {
+    const link = document.createElement('a');
+    link.href = certificate.pdfUrl;
+    link.download = `${certificate.title}.pdf`;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const renderCertifications = () => (
+    <TimelineContainer>
+      <TimelineLine />
+      {certificationsData.map((cert, index) => (
+        <TimelineItem key={index}>
+          <ItemInfo className={index % 2 === 0 ? 'left' : 'right'}>
+            <ItemIcon>
+              <cert.icon />
+            </ItemIcon>
+            <ItemContent>
+              <ItemTitle>{cert.title}</ItemTitle>
+              <ItemSubtitle>{cert.subtitle}</ItemSubtitle>
+              <ItemDate>{cert.date}</ItemDate>
+              {cert.credentialId && (
+                <CredentialId>Credential ID: {cert.credentialId}</CredentialId>
+              )}
+              {cert.skills && (
+                <SkillsTags>
+                  {cert.skills.map((skill, skillIndex) => (
+                    <SkillTag key={skillIndex}>{skill}</SkillTag>
+                  ))}
+                </SkillsTags>
+              )}
+              {cert.pdfUrl && (
+                <ViewCertificateButton
+                  onClick={() => openCertificateViewer(cert)}
+                >
+                  <FaEye />
+                  View Certificate
+                </ViewCertificateButton>
+              )}
+            </ItemContent>
+          </ItemInfo>
+        </TimelineItem>
+      ))}
+    </TimelineContainer>
+  );
+
   const renderSkills = () => (
     <SkillsContainer>
       {skillsData.map((category, index) => (
@@ -548,7 +847,12 @@ const Resume = () => {
     </SkillsContainer>
   );
 
-  const tabContent = [renderEducation(), renderExperience(), renderSkills()];
+  const tabContent = [
+    renderEducation(),
+    renderCertifications(),
+    renderSkills(),
+    renderExperience(),
+  ];
 
   return (
     <ResumeSection id="resume">
@@ -584,6 +888,56 @@ const Resume = () => {
             </motion.div>
           </AnimatePresence>
         </TabContent>
+
+        {/* PDF Certificate Viewer Modal */}
+        <AnimatePresence>
+          {selectedCertificate && (
+            <PDFModal
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ModalOverlay onClick={closeCertificateViewer} />
+              <ModalContainer
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ModalHeader>
+                  <ModalTitle>{selectedCertificate.title}</ModalTitle>
+                  <ModalActions>
+                    <ActionButton
+                      className="download"
+                      onClick={() => downloadCertificate(selectedCertificate)}
+                    >
+                      <FaDownload />
+                      Download
+                    </ActionButton>
+                    <ActionButton
+                      className="close"
+                      onClick={closeCertificateViewer}
+                    >
+                      <FaTimes />
+                      Close
+                    </ActionButton>
+                  </ModalActions>
+                </ModalHeader>
+                <PDFViewer>
+                  <PDFFrame
+                    src={`${selectedCertificate.pdfUrl}#toolbar=1&navpanes=1&scrollbar=1`}
+                    title={selectedCertificate.title}
+                    onError={() => {
+                      // Fallback for browsers that don't support PDF viewing
+                      window.open(selectedCertificate.pdfUrl, '_blank');
+                    }}
+                  />
+                </PDFViewer>
+              </ModalContainer>
+            </PDFModal>
+          )}
+        </AnimatePresence>
       </Container>
     </ResumeSection>
   );

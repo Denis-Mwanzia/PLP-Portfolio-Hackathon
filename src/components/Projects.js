@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaGithub, FaExternalLinkAlt, FaTimes } from 'react-icons/fa';
+import LazyImageComponent from './LazyImage';
 
 const ProjectsSection = styled.section`
   position: relative;
@@ -97,26 +98,166 @@ const ProjectsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: clamp(1.5rem, 4vw, 2rem);
   position: relative;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  /* Smooth transition when layout changes */
+  &.single-item,
+  &.two-items,
+  &.three-items,
+  &.four-items {
+    animation: layoutChange 0.4s ease-out;
+  }
+
+  @keyframes layoutChange {
+    0% {
+      opacity: 0.8;
+      transform: scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Compact layout for single item */
+  &.single-item {
+    grid-template-columns: minmax(300px, 400px);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Two items layout */
+  &.two-items {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Three items layout */
+  &.three-items {
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Four or more items layout */
+  &.four-items {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1024px) {
+    &.three-items {
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
+      max-width: 800px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &.single-item,
+    &.two-items {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+
+    &.three-items {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 600px;
+    }
+  }
 
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
+
+    &.single-item,
+    &.two-items,
+    &.three-items,
+    &.four-items {
+      max-width: 100%;
+    }
   }
+`;
+
+const CardCategory = styled.span`
+  color: var(--medium-gray);
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  display: inline-block;
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(59, 130, 246, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+`;
+
+const CardTitle = styled.h4`
+  color: var(--dark-blue);
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  margin-bottom: var(--space-md);
+  font-weight: 600;
+  line-height: 1.4;
+  flex: 1;
 `;
 
 const ProjectCard = styled(motion.div)`
   background: var(--white);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: 0 5px 20px var(--shadow-light);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(59, 130, 246, 0.05),
+      rgba(16, 185, 129, 0.03)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 35px var(--shadow-dark);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(59, 130, 246, 0.1);
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  &:hover ${CardCategory} {
+    background: linear-gradient(
+      135deg,
+      var(--primary-blue),
+      var(--secondary-blue)
+    );
+    color: white;
+    transform: scale(1.05);
+  }
+
+  &:hover ${CardTitle} {
+    color: var(--primary-blue);
   }
 `;
 
@@ -143,25 +284,6 @@ const CardInfo = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-`;
-
-const CardCategory = styled.span`
-  color: var(--medium-gray);
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
-  display: block;
-  margin-bottom: var(--space-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 500;
-`;
-
-const CardTitle = styled.h4`
-  color: var(--dark-blue);
-  font-size: clamp(1.1rem, 3vw, 1.3rem);
-  margin-bottom: var(--space-md);
-  font-weight: 600;
-  line-height: 1.4;
-  flex: 1;
 `;
 
 const CardButton = styled.div`
@@ -412,19 +534,54 @@ const Projects = () => {
       live: 'https://denismwanzia.netlify.app/',
       date: 'February 2025',
     },
+    {
+      id: 'fullstack3',
+      title: 'Kitui Reforest AI',
+      category: 'fullstack',
+      description:
+        'A comprehensive environmental restoration platform for Kitui County featuring AI-powered species recommendations, GIS mapping with NDVI analysis, real-time weather integration, and community engagement tools. Built for the Land ReGen Hackathon 2025 with advanced climate intelligence and collaborative project tracking.',
+      image: '/assets/kitui_AI.png',
+      github: 'https://github.com/Denis-Mwanzia/LandReGenHackathon2025.git',
+      live: 'https://kitui-reforest-ai.onrender.com/',
+      date: 'October 2025',
+      technologies: [
+        'React',
+        'TypeScript',
+        'Tailwind CSS',
+        'Supabase',
+        'Leaflet Maps',
+        'AI Integration',
+        'OpenWeather API',
+        'PostgreSQL',
+      ],
+    },
   ];
 
-  const filteredProjects = projects.filter(
-    (project) => activeFilter === 'all' || project.category === activeFilter
+  const filteredProjects = useMemo(
+    () =>
+      projects.filter(
+        (project) => activeFilter === 'all' || project.category === activeFilter
+      ),
+    [activeFilter]
   );
 
-  const openPopup = (project) => {
-    setSelectedProject(project);
+  // Determine grid layout class based on number of projects
+  const getGridLayoutClass = () => {
+    const count = filteredProjects.length;
+    if (count === 1) return 'single-item';
+    if (count === 2) return 'two-items';
+    if (count === 3) return 'three-items';
+    if (count === 4) return 'four-items';
+    return '';
   };
 
-  const closePopup = () => {
+  const openPopup = useCallback((project) => {
+    setSelectedProject(project);
+  }, []);
+
+  const closePopup = useCallback(() => {
     setSelectedProject(null);
-  };
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -466,7 +623,7 @@ const Projects = () => {
           ))}
         </ProjectTabs>
 
-        <ProjectsGrid ref={ref}>
+        <ProjectsGrid ref={ref} className={getGridLayoutClass()}>
           <AnimatePresence>
             <motion.div
               variants={containerVariants}
@@ -477,12 +634,15 @@ const Projects = () => {
             >
               {filteredProjects.map((project, index) => (
                 <motion.div key={project.id} variants={itemVariants} layout>
-                  <ProjectCard onClick={() => openPopup(project)}>
+                  <ProjectCard
+                    className="project-card"
+                    onClick={() => openPopup(project)}
+                  >
                     <CardImage>
-                      <Image
+                      <LazyImageComponent
                         src={project.image}
                         alt={project.title}
-                        loading="lazy"
+                        minHeight="180px"
                       />
                     </CardImage>
                     <CardInfo>

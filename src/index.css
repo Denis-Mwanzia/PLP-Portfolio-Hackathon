@@ -78,6 +78,13 @@ html {
     font-size: 16px;
 }
 
+/* Fallback for older Safari versions */
+@supports not (scroll-behavior: smooth) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 /* Base typography */
 body {
     font-family: var(--font-main);

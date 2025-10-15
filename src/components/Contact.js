@@ -89,11 +89,38 @@ const ContactItem = styled.div`
   padding: var(--space-lg);
   background: var(--white);
   border-radius: var(--radius-lg);
-  box-shadow: 0 3px 15px var(--shadow-light);
-  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(59, 130, 246, 0.03),
+      rgba(16, 185, 129, 0.02)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px var(--shadow-medium);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(59, 130, 246, 0.1);
+  }
+
+  &:hover::before {
+    opacity: 1;
   }
 `;
 
@@ -139,7 +166,26 @@ const ContactForm = styled.form`
   background: var(--white);
   padding: clamp(1.5rem, 4vw, 2rem);
   border-radius: var(--radius-xl);
-  box-shadow: 0 5px 25px var(--shadow-light);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(59, 130, 246, 0.02),
+      rgba(16, 185, 129, 0.01)
+    );
+    z-index: 1;
+  }
 `;
 
 const FormGroup = styled.div`
@@ -152,12 +198,21 @@ const FormInput = styled.input`
   border: 2px solid var(--border-gray);
   border-radius: var(--radius-lg);
   font-size: clamp(0.9rem, 2vw, 1rem);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background: var(--white);
+  position: relative;
+  z-index: 2;
+
   &:focus {
     border-color: var(--primary-blue);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.1);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  &:hover {
+    border-color: rgba(59, 130, 246, 0.3);
     transform: translateY(-1px);
   }
 `;
@@ -168,21 +223,30 @@ const FormTextarea = styled.textarea`
   border: 2px solid var(--border-gray);
   border-radius: var(--radius-lg);
   font-size: clamp(0.9rem, 2vw, 1rem);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background: var(--white);
   resize: vertical;
   min-height: 120px;
+  position: relative;
+  z-index: 2;
+
   &:focus {
     border-color: var(--primary-blue);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.1);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  &:hover {
+    border-color: rgba(59, 130, 246, 0.3);
     transform: translateY(-1px);
   }
 `;
 
 const SubmitButton = styled(motion.button)`
   background: linear-gradient(
-    90deg,
+    135deg,
     var(--primary-blue),
     var(--secondary-blue)
   );
@@ -193,19 +257,46 @@ const SubmitButton = styled(motion.button)`
   font-size: clamp(0.9rem, 2vw, 1rem);
   cursor: pointer;
   font-weight: 600;
-  box-shadow: 0 4px 15px rgba(58, 123, 213, 0.25);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
   display: flex;
   align-items: center;
   gap: var(--space-sm);
   justify-content: center;
   min-width: 150px;
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(58, 123, 213, 0.35);
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s ease;
   }
+
+  &:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+    transform: none;
   }
 `;
 

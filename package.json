@@ -2,6 +2,7 @@
   "name": "denis-mwanzia-portfolio",
   "version": "1.0.0",
   "description": "A modern, responsive portfolio website built with React",
+  "homepage": "https://denis-mwanzia.github.io/PLP-Portfolio-Hackathon",
   "private": true,
   "dependencies": {
     "@formspree/react": "^3.0.0",
@@ -26,7 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -55,5 +58,8 @@
     "modern"
   ],
   "author": "Denis Mwanzia",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
 }
