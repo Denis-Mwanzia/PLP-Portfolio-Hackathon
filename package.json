@@ -2,7 +2,7 @@
   "name": "denis-mwanzia-portfolio",
   "version": "1.0.0",
   "description": "A modern, responsive portfolio website built with React",
-  "homepage": "https://denis-mwanzia.github.io/PLP-Portfolio-Hackathon",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@formspree/react": "^3.0.0",
