@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
+import ParallaxShapes from './ParallaxShapes';
 import { useInView } from 'react-intersection-observer';
 import {
   FaEnvelope,
@@ -11,8 +12,9 @@ import {
 
 // ===== Styled Components =====
 const ContactSection = styled.section`
-  background-color: var(--off-white);
+  background: var(--section-surface);
   padding: clamp(3rem, 8vw, 5rem) 0;
+  transition: background 0.6s ease;
 `;
 
 const Container = styled.div`
@@ -25,6 +27,7 @@ const SectionTitle = styled.div`
   text-align: center;
   margin-bottom: var(--space-2xl);
 `;
+
 
 const Title = styled.h3`
   font-size: clamp(2rem, 6vw, 2.5rem);
@@ -48,21 +51,6 @@ const SubTitle = styled.p`
   color: var(--medium-gray);
   position: relative;
   padding-bottom: var(--space-md);
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(
-      90deg,
-      var(--primary-blue) 0%,
-      var(--secondary-blue) 100%
-    );
-    border-radius: 3px;
-  }
 `;
 
 const ContactContainer = styled.div`
@@ -87,11 +75,11 @@ const ContactItem = styled.div`
   align-items: flex-start;
   gap: var(--space-lg);
   padding: var(--space-lg);
-  background: var(--white);
+  background: var(--surface-card);
   border-radius: var(--radius-lg);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 28px var(--shadow-light);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--surface-outline);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
@@ -115,8 +103,9 @@ const ContactItem = styled.div`
 
   &:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12),
-      0 0 0 1px rgba(59, 130, 246, 0.1);
+    background: var(--surface-card-hover);
+    box-shadow: 0 20px 60px var(--shadow-medium),
+      0 0 0 1px rgba(59, 130, 246, 0.12);
   }
 
   &:hover::before {
@@ -126,7 +115,7 @@ const ContactItem = styled.div`
 
 const ContactIcon = styled.div`
   font-size: clamp(1.2rem, 3vw, 1.5rem);
-  color: var(--primary-blue);
+  color: var(--accent-primary);
   margin-top: var(--space-xs);
   flex-shrink: 0;
 `;
@@ -138,24 +127,24 @@ const ContactContent = styled.div`
 const ContactTitle = styled.h4`
   font-size: clamp(1.1rem, 2.5vw, 1.25rem);
   margin-bottom: var(--space-sm);
-  color: var(--dark-blue);
+  color: var(--text-primary);
   font-weight: 600;
 `;
 
 const ContactText = styled.p`
-  color: var(--medium-gray);
+  color: var(--text-secondary);
   font-size: clamp(0.9rem, 2vw, 1rem);
   word-break: break-word;
 `;
 
 const ContactLink = styled.a`
-  color: var(--medium-gray);
+  color: var(--text-secondary);
   transition: color 0.3s ease;
   font-size: clamp(0.9rem, 2vw, 1rem);
   word-break: break-word;
   text-decoration: none;
   &:hover {
-    color: var(--primary-blue);
+    color: var(--accent-primary);
   }
 `;
 
@@ -163,11 +152,11 @@ const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
-  background: var(--white);
+  background: var(--surface-card);
   padding: clamp(1.5rem, 4vw, 2rem);
   border-radius: var(--radius-xl);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 32px var(--shadow-light);
+  border: 1px solid var(--surface-outline);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
@@ -195,61 +184,79 @@ const FormGroup = styled.div`
 const FormInput = styled.input`
   width: 100%;
   padding: clamp(0.8rem, 2.5vw, 1rem);
-  border: 2px solid var(--border-gray);
+  border: 2px solid var(--surface-outline);
   border-radius: var(--radius-lg);
   font-size: clamp(0.9rem, 2vw, 1rem);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.9);
   position: relative;
   z-index: 2;
 
   &:focus {
-    border-color: var(--primary-blue);
+    border-color: var(--accent-primary);
     outline: none;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 4px rgba(58, 123, 213, 0.14);
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
   }
 
   &:hover {
-    border-color: rgba(59, 130, 246, 0.3);
+    border-color: rgba(58, 123, 213, 0.25);
     transform: translateY(-1px);
+  }
+
+  html[data-theme='dark'] & {
+    background: rgba(12, 22, 39, 0.92);
+    border-color: rgba(108, 149, 255, 0.25);
+    color: var(--text-primary);
+
+    &:focus {
+      border-color: rgba(108, 149, 255, 0.55);
+      box-shadow: 0 0 0 4px rgba(108, 149, 255, 0.2);
+    }
   }
 `;
 
 const FormTextarea = styled.textarea`
   width: 100%;
   padding: clamp(0.8rem, 2.5vw, 1rem);
-  border: 2px solid var(--border-gray);
+  border: 2px solid var(--surface-outline);
   border-radius: var(--radius-lg);
   font-size: clamp(0.9rem, 2vw, 1rem);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.9);
   resize: vertical;
   min-height: 120px;
   position: relative;
   z-index: 2;
 
   &:focus {
-    border-color: var(--primary-blue);
+    border-color: var(--accent-primary);
     outline: none;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 4px rgba(58, 123, 213, 0.14);
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
   }
 
   &:hover {
-    border-color: rgba(59, 130, 246, 0.3);
+    border-color: rgba(58, 123, 213, 0.25);
     transform: translateY(-1px);
+  }
+
+  html[data-theme='dark'] & {
+    background: rgba(12, 22, 39, 0.92);
+    border-color: rgba(108, 149, 255, 0.25);
+    color: var(--text-primary);
+
+    &:focus {
+      border-color: rgba(108, 149, 255, 0.55);
+      box-shadow: 0 0 0 4px rgba(108, 149, 255, 0.2);
+    }
   }
 `;
 
 const SubmitButton = styled(motion.button)`
-  background: linear-gradient(
-    135deg,
-    var(--primary-blue),
-    var(--secondary-blue)
-  );
+  background: var(--accent-gradient);
   color: var(--white);
   border: none;
   padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2rem);
@@ -330,6 +337,7 @@ const Contact = () => {
     email: '',
     subject: '',
     message: '',
+    honeypot: '',
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -356,6 +364,9 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
+    if (formData.honeypot) {
+      return;
+    }
     setIsSubmitting(true);
     setSubmitMessage(null);
 
@@ -366,7 +377,12 @@ const Contact = () => {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
 
       if (response.ok) {
@@ -374,7 +390,7 @@ const Contact = () => {
           type: 'success',
           text: "Message sent successfully! I'll get back to you soon.",
         });
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', subject: '', message: '', honeypot: '' });
         setTimeout(() => setSubmitMessage(null), 5000);
       } else {
         throw new Error('Formspree submission failed');
@@ -409,6 +425,13 @@ const Contact = () => {
   return (
     <ContactSection id="contact">
       <Container>
+        <ParallaxShapes
+          shapes={[
+            { size: '300px', top: '10%', left: '15%', color1: 'rgba(0,119,255,0.18)', color2: 'rgba(0,198,255,0.1)', blur: 42, opacity: 0.2 },
+            { size: '220px', top: '70%', left: '80%', color1: 'rgba(139,92,246,0.18)', color2: 'rgba(59,130,246,0.1)', blur: 38, opacity: 0.18 }
+          ]}
+          intensity={18}
+        />
         <SectionTitle>
           <Title>Get In Touch</Title>
           <SubTitle>Let's work together</SubTitle>
@@ -466,6 +489,16 @@ const Contact = () => {
           >
             <motion.div variants={itemVariants}>
               <ContactForm onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="honeypot"
+                  value={formData.honeypot}
+                  onChange={handleInputChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  style={{ position: 'absolute', clip: 'rect(0 0 0 0)', height: 1, width: 1, margin: -1, border: 0, padding: 0 }}
+                  aria-hidden="true"
+                />
                 <FormGroup>
                   <FormInput
                     type="text"
@@ -474,8 +507,11 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
+                    aria-required="true"
+                    aria-invalid={!!errors.name}
+                    aria-describedby={errors.name ? 'contact-name-error' : undefined}
                   />
-                  {errors.name && <FieldError>{errors.name}</FieldError>}
+                  {errors.name && <FieldError id="contact-name-error">{errors.name}</FieldError>}
                 </FormGroup>
                 <FormGroup>
                   <FormInput
@@ -485,8 +521,11 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
+                    aria-required="true"
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? 'contact-email-error' : undefined}
                   />
-                  {errors.email && <FieldError>{errors.email}</FieldError>}
+                  {errors.email && <FieldError id="contact-email-error">{errors.email}</FieldError>}
                 </FormGroup>
                 <FormGroup>
                   <FormInput
@@ -504,8 +543,11 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
+                    aria-required="true"
+                    aria-invalid={!!errors.message}
+                    aria-describedby={errors.message ? 'contact-message-error' : undefined}
                   />
-                  {errors.message && <FieldError>{errors.message}</FieldError>}
+                  {errors.message && <FieldError id="contact-message-error">{errors.message}</FieldError>}
                 </FormGroup>
                 <SubmitButton
                   type="submit"
@@ -526,6 +568,7 @@ const Contact = () => {
                   {submitMessage && (
                     <FormMessage
                       className={submitMessage.type}
+                      role="alert"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
