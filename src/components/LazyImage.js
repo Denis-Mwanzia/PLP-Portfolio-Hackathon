@@ -39,7 +39,17 @@ const Placeholder = styled.div`
   }
 `;
 
-const LazyImageComponent = ({ src, alt, minHeight, ...props }) => {
+const LazyImageComponent = ({
+  src,
+  alt,
+  minHeight,
+  sizes,
+  srcSet,
+  width,
+  height,
+  decoding = 'async',
+  ...props
+}) => {
   const [loaded, setLoaded] = useState(false);
   const [inView, setInView] = useState(false);
   const imgRef = useRef();
@@ -76,6 +86,11 @@ const LazyImageComponent = ({ src, alt, minHeight, ...props }) => {
           loaded={loaded}
           onLoad={handleLoad}
           loading="lazy"
+          decoding={decoding}
+          sizes={sizes}
+          srcSet={srcSet}
+          width={width}
+          height={height}
         />
       )}
     </ImageContainer>
