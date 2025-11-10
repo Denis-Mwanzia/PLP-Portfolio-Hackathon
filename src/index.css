@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ================================================
    GLOBAL STYLES AND RESETS
    ================================================ */
@@ -6,26 +10,52 @@
 
 /* CSS Custom Properties for consistent theming */
 :root {
-    /* Color Variables */
+    /* Accent Palette */
     --primary-blue: #3a7bd5;
-    --secondary-blue: #00d2ff;
-    --dark-blue: #171d27;
-    --light-blue: #84b0f5;
+    --secondary-blue: #8f5cf7;
     --hover-blue: #2a6bc4;
+    --light-blue: #84b0f5;
+    --accent-primary: var(--primary-blue);
+    --accent-secondary: var(--secondary-blue);
+    --accent-gradient: linear-gradient(135deg, rgba(58, 123, 213, 1), rgba(143, 92, 247, 1));
+
+    /* Surface Palette */
     --white: #ffffff;
-    --off-white: #f8f9ff;
-    --light-gray: #f0f2ff;
-    --dark-gray: #333;
-    --medium-gray: #666;
-    --text-gray: #495057;
-    --border-gray: #ddd;
-    --success-green: #28a745;
-    --dark-green: #218838;
-    --github-black: #333;
-    --darker-black: #222;
-    --shadow-light: rgba(0, 0, 0, 0.05);
-    --shadow-medium: rgba(0, 0, 0, 0.1);
-    --shadow-dark: rgba(0, 0, 0, 0.15);
+    --off-white: #f7f8fc;
+    --light-gray: #eef1ff;
+    --dark-blue: #10192d;
+    --dark-gray: #1f2a3d;
+    --medium-gray: #4b566d;
+    --text-gray: #1f2a3d;
+    --text-primary: #1f2a3d;
+    --text-secondary: #4b566d;
+
+    /* Backgrounds & Surfaces */
+    --bg-page: linear-gradient(135deg, #f6f8fc 0%, #eef3ff 30%, #f9fbff 100%);
+    --section-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78));
+    --surface-card: rgba(255, 255, 255, 0.88);
+    --surface-card-hover: rgba(255, 255, 255, 0.96);
+    --surface-glass: rgba(255, 255, 255, 0.6);
+    --surface-outline: rgba(58, 123, 213, 0.08);
+    --chip-bg: rgba(58, 123, 213, 0.12);
+    --badge-bg: rgba(255, 255, 255, 0.7);
+    --badge-border: rgba(58, 123, 213, 0.25);
+    --border-gray: rgba(58, 123, 213, 0.12);
+    --footer-icon-color: #ffffff;
+
+    /* Shadows */
+    --shadow-light: rgba(17, 24, 39, 0.08);
+    --shadow-medium: rgba(17, 24, 39, 0.14);
+    --shadow-dark: rgba(17, 24, 39, 0.22);
+
+    /* Status */
+    --success-green: #1dbf73;
+    --dark-green: #10824f;
+    --github-black: #1f2328;
+    --darker-black: #161b22;
+
+    /* Hero */
+    --hero-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #f0f4ff 100%);
 
     /* Typography Scale */
     --font-main: 'Poppins', sans-serif;
@@ -65,6 +95,48 @@
     --container-2xl: 1536px;
 }
 
+/* Dark theme overrides */
+[data-theme="dark"] {
+    --white: #070d19;
+    --off-white: #0b1324;
+    --light-gray: #0f1a2d;
+    --dark-blue: #020611;
+    --dark-gray: #f2f5ff;
+    --medium-gray: #9aa7c9;
+    --text-gray: #e6ecff;
+    --text-primary: #e6ecff;
+    --text-secondary: #9aa7c9;
+
+    --bg-page: radial-gradient(circle at 20% 10%, #0f1a33 0%, #050b16 45%, #03060d 100%);
+    --section-surface: linear-gradient(180deg, rgba(14, 24, 41, 0.92), rgba(10, 18, 34, 0.86));
+    --surface-card: rgba(17, 28, 46, 0.92);
+    --surface-card-hover: rgba(24, 38, 59, 0.96);
+    --surface-glass: rgba(14, 24, 41, 0.68);
+    --surface-outline: rgba(108, 149, 255, 0.2);
+    --chip-bg: rgba(108, 149, 255, 0.22);
+    --badge-bg: rgba(18, 30, 52, 0.82);
+    --badge-border: rgba(108, 149, 255, 0.38);
+    --light-blue: #6c8dff;
+    --border-gray: rgba(108, 149, 255, 0.2);
+    --footer-icon-color: #e6ecff;
+
+    --accent-primary: #6c8dff;
+    --accent-secondary: #1cd8ff;
+    --accent-gradient: linear-gradient(135deg, rgba(108, 141, 255, 1), rgba(28, 216, 255, 1));
+    --secondary-blue: #1cd8ff;
+
+    --success-green: #1dd1a1;
+    --dark-green: #0c9b72;
+    --github-black: #f1f5ff;
+    --darker-black: #cfd6de;
+
+    --shadow-light: rgba(3, 8, 20, 0.45);
+    --shadow-medium: rgba(3, 8, 20, 0.55);
+    --shadow-dark: rgba(3, 8, 20, 0.65);
+
+    --hero-gradient: linear-gradient(135deg, #050a17 0%, #081124 45%, #050a14 100%);
+}
+
 /* Universal reset */
 * {
     margin: 0;
@@ -89,7 +161,8 @@ html {
 body {
     font-family: var(--font-main);
     line-height: 1.6;
-    color: var(--dark-gray);
+    color: var(--text-primary);
+    background: var(--bg-page);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -101,6 +174,27 @@ body {
     max-width: var(--container-xl);
     margin: 0 auto;
     padding: 0 var(--space-lg);
+}
+
+/* Responsive typography and spacing */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
+    .container {
+        padding: 0 var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 0 var(--space-sm);
+    }
 }
 
 /* Global transition settings */
