@@ -440,10 +440,20 @@ const PopupLink = styled.a`
   }
 
   &.github {
-    background-color: var(--github-black);
+    background: linear-gradient(135deg, #24292f, #1f2328);
+    color: #f6f8fa;
 
     &:hover {
-      background-color: var(--darker-black);
+      filter: brightness(1.05);
+    }
+
+    html[data-theme='dark'] & {
+      background: linear-gradient(135deg, #f8fafc, #d0d7de);
+      color: #1f2328;
+
+      &:hover {
+        filter: brightness(0.96);
+      }
     }
   }
 
