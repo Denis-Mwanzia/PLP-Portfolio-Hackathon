@@ -694,6 +694,29 @@ const Resume = () => {
       description:
         'Comprehensive AI literacy program covering artificial intelligence fundamentals, machine learning concepts, and AI ethics in modern technology.',
     },
+    {
+      title: 'Full-Stack Development — MERN Track',
+      subtitle: 'Power Learn Project (PLP)',
+      date: '2025',
+      icon: FaCertificate,
+      issuer: 'Power Learn Project Academy',
+      skills: ['React', 'Node.js', 'MongoDB', 'Express', 'REST APIs', 'DevOps Fundamentals'],
+      pdfUrl:
+        '/assets/certificates/denis%20Full-Stack%20Development%20MERN%20Stack%20certificate.pdf',
+      description:
+        'Intensive full-stack engineering training focused on building production-grade MERN applications with modern tooling and best practices.',
+    },
+    {
+      title: 'ICT Graduate Trainee Certification',
+      subtitle: 'ICT Authority Smart Academy',
+      date: '2024',
+      icon: FaCertificate,
+      issuer: 'ICT Authority Kenya',
+      skills: ['ICT Infrastructure', 'Networking', 'Digital Transformation', 'Professional Development'],
+      pdfUrl: '/assets/certificates/ICT%20Graduate.pdf',
+      description:
+        'Professional certification from the ICT Authority graduate program covering enterprise ICT infrastructure, support operations, and digital transformation initiatives.',
+    },
   ];
 
   const skillsData = [
