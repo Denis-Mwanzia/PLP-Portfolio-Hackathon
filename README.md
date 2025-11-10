@@ -4,52 +4,61 @@ A modern, responsive portfolio website built with React, showcasing my skills, p
 
 ## 🌟 Live Demo
 
-🔗 **[View Live Portfolio](https://denismwanzia.netlify.app/)**
-
 - **Production URL**: <https://denismwanzia.netlify.app/>
+- **Latest Deploy Preview**: <https://denismwanzia.netlify.app/>
 
-## ✨ Features
+## ✨ Feature Highlights
 
-### 🎨 Modern Design
+### 🎨 Modern, Animated Interface
 
-- **Responsive Design**: Optimized for all devices (desktop, tablet, mobile)
-- **Smooth Animations**: Powered by Framer Motion for engaging user experience
-- **Interactive Elements**: Hover effects, transitions, and micro-interactions
-- **Clean UI/UX**: Modern design with excellent user experience
+- **Responsive layout** that adapts seamlessly to mobile, tablet, and desktop viewports
+- **Hero experience** with animated background layers, spotlight effect, and refined copy
+- **Animated tech marquee** to showcase the primary stack in motion
+- **Capabilities section** that introduces competency pillars with staggered animations
+- **Scroll progress indicator** and section dividers to guide reading flow
 
-### 🛠️ Technical Features
+### 🌙 Theming & UX
 
-- **React 18**: Latest React features with hooks and functional components
-- **Styled Components**: CSS-in-JS for component-scoped styling
-- **Framer Motion**: Advanced animations and transitions
-- **React Helmet**: SEO optimization and meta tag management
-- **Intersection Observer**: Scroll-triggered animations
-- **Local Storage**: Theme persistence and user preferences
+- **Light/Dark mode** support with theme persistence via local storage
+- **Mobile theme toggle** surfaced inside the hamburger drawer
+- **Accessible navigation** with focus management, keyboard traps, and skip-friendly interactions
+- **Optimized project detail modals** with keyboard/ESC handling, background scroll lock, and improved contrast
+
+### 🗂 Resume & Credentials
+
+- Interactive **resume tabs** (Education, Certifications, Skills, Experience)
+- Embedded **certificate viewer** with download actions for PLP MERN and ICT Authority graduate awards
+- Dedicated **Capabilities** grid summarising core strengths across delivery, backend, and frontend
+
+### 🛠 Technical Features
+
+- **React 18** with functional components and hooks
+- **Vite** tooling for instant dev server, HMR, and optimized production builds
+- **Styled Components** for scoped styling and theme-aware variants
+- **Framer Motion** for animation choreography
+- **React Helmet Async** for SEO-friendly metadata and structured data
+- **Custom hooks** for scroll position, intersection observers, and local storage helpers
+- **Lazy image loading** and progressive enhancement for assets
 
 ### 📱 Responsive Sections
 
-- **Hero Section**: Eye-catching introduction with animated profile image
-- **About Section**: Personal story and professional background
-- **Resume Section**: Interactive tabs for Education, Experience, and Skills
-- **Projects Section**: Filterable project showcase with detailed modals
-- **Contact Section**: Working contact form with validation
-- **Footer**: Social links and quick navigation
+- **Hero**, **About**, **Capabilities**, **Resume**, **Projects**, **Contact**, and **Footer** – each tuned for various breakpoints
+- **Filterable Projects** section with category chips and quick-view drawer
+- **Contact form** powered by Formspree with validation states
 
-### 🎯 Enhanced Functionality
+### ♿ Accessibility
 
-- **Mobile Navigation**: Hamburger menu with smooth animations
-- **Scroll-to-Top**: Floating button for easy navigation
-- **Project Filtering**: Filter projects by category
-- **Form Validation**: Real-time form validation with error handling
-- **Loading States**: Smooth loading animations
-- **Accessibility**: ARIA labels, keyboard navigation, and screen reader support
+- ARIA labels on interactive controls
+- Focus trapping within dialogs
+- Keyboard navigable menus and overlays
+- Respect for reduced-motion user preferences
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn package manager
+- Node.js (v18 or higher recommended)
+- npm (ships with Node) or yarn
 
 ### Installation
 
@@ -71,48 +80,66 @@ A modern, responsive portfolio website built with React, showcasing my skills, p
 3. **Start the development server**
 
    ```bash
-   npm start
+   npm run dev
    # or
-   yarn start
+   yarn dev
    ```
 
-4. **Open your browser**
-   Navigate to `http://localhost:3000` to view the portfolio.
+   The Vite dev server defaults to <http://localhost:5173>. Pass `--host` if you need LAN access:
 
-### Build for Production
+   ```bash
+   npm run dev -- --host
+   ```
+
+4. **Build for production**
+
+   ```bash
+   npm run build
+   # or
+   yarn build
+   ```
+
+   Compiled assets land in the `dist/` directory. Preview the production build locally with:
+
+   ```bash
+   npm run preview
+   ```
+
+### Optional: Deploy with Netlify CLI
 
 ```bash
-npm run build
-# or
-yarn build
+netlify deploy --dir=dist      # staging deploy
+netlify deploy --dir=dist --prod
 ```
-
-This creates an optimized production build in the `build` folder.
 
 ## 📁 Project Structure
 
 ```
 src/
 ├── components/          # React components
-│   ├── Header.js       # Navigation header
-│   ├── Hero.js         # Hero section
-│   ├── About.js        # About section
-│   ├── Resume.js       # Resume/Experience section
-│   ├── Projects.js     # Projects showcase
-│   ├── Contact.js      # Contact form
-│   ├── Footer.js       # Footer
-│   └── ScrollToTop.js  # Scroll to top button
+│   ├── Header.js          # Sticky navigation + theme toggle
+│   ├── Hero.js            # Animated hero section
+│   ├── About.js           # Bio + tech marquee
+│   ├── Capabilities.js    # Capability cards
+│   ├── Resume.js          # Resume tabs + certificate viewer
+│   ├── Projects.js        # Project grid & modal
+│   ├── Contact.js         # Formspree-powered contact form
+│   ├── Footer.js          # Footer links
+│   ├── SectionDivider.js  # SVG wave divider
+│   ├── ScrollProgress.js  # Top progress bar
+│   └── ScrollToTop.js     # Scroll-to-top button
 ├── context/            # React context
-│   └── ThemeContext.js # Theme management
+│   └── ThemeContext.js    # Theme provider + persistence
 ├── hooks/              # Custom React hooks
 │   ├── useScrollPosition.js
+│   ├── useIntersectionObserver.js
 │   └── useLocalStorage.js
 ├── utils/              # Utility functions
-│   ├── animations.js   # Animation variants
-│   └── constants.js    # App constants and data
-├── App.js              # Main App component
-├── index.js            # App entry point
-└── index.css           # Global styles
+│   ├── animations.js      # Animation variants
+│   └── constants.js       # App constants and data
+├── App.js                 # Root layout + section ordering
+├── main.jsx               # Application entry point
+└── index.css              # Global styles & CSS variables
 ```
 
 ## 🎨 Customization
@@ -154,7 +181,7 @@ export const PROJECTS_DATA = [
 
 ### Styling
 
-The portfolio uses CSS custom properties for easy theming. Update colors in `src/index.css`:
+Global styles and theme tokens live in `src/index.css`. Update CSS custom properties to adjust the palette:
 
 ```css
 :root {
@@ -169,16 +196,18 @@ The portfolio uses CSS custom properties for easy theming. Update colors in `src
 ### Frontend
 
 - **React 18** - UI library
+- **Vite** - Dev server & bundler
 - **Styled Components** - CSS-in-JS styling
 - **Framer Motion** - Animation library
 - **React Icons** - Icon library
 - **React Helmet Async** - SEO management
+- **Tailwind (optional)** - Utility classes (configured, opt-in)
 
 ### Development Tools
 
-- **Create React App** - Development environment
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
+- **ESLint & Prettier** - Consistent formatting and linting
+- **Netlify CLI** - Continuous deployment and preview
+- **GitHub Actions (optional)** - CI/CD hooks
 
 ### Deployment
 
@@ -196,7 +225,7 @@ The portfolio uses CSS custom properties for easy theming. Update colors in `src
 ## 🚀 Performance Features
 
 - **Lazy Loading**: Images load as they come into view
-- **Code Splitting**: Automatic code splitting with React
+- **Code Splitting**: Automatic via Vite & React
 - **Optimized Images**: Compressed and optimized images
 - **Minified CSS/JS**: Production builds are minified
 - **Caching**: Proper cache headers for static assets
@@ -223,12 +252,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-**Denis Mwanzia**
-
-- Email: <denismunyoki5657@gmail.com>
-- Phone: +254110433220
-- LinkedIn: [Denis Mwanzia](https://www.linkedin.com/in/denis-mwanzia)
-- GitHub: [Denis-Mwanzia](https://github.com/Denis-Mwanzia)
+- **Email**: <denismunyoki5657@gmail.com>
+- **Phone**: +254110433220
+- **LinkedIn**: [Denis Mwanzia](https://www.linkedin.com/in/denis-mwanzia)
+- **GitHub**: [Denis-Mwanzia](https://github.com/Denis-Mwanzia)
 
 ## 🙏 Acknowledgments
 
