@@ -52,7 +52,7 @@ const SocialLinks = styled.div`
 `;
 
 const SocialLink = styled.a`
-  color: var(--white);
+  color: var(--footer-icon-color);
   font-size: clamp(1.2rem, 3vw, 1.5rem);
   transition: all 0.3s ease;
   width: 40px;
