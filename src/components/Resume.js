@@ -20,7 +20,8 @@ const ResumeSection = styled.section`
   position: relative;
   overflow: hidden;
   padding: clamp(3rem, 8vw, 5rem) 0;
-  background-color: var(--off-white);
+  background: var(--section-surface);
+  transition: background 0.6s ease;
 `;
 
 const Container = styled.div`
@@ -33,6 +34,7 @@ const SectionTitle = styled.div`
   text-align: center;
   margin-bottom: var(--space-2xl);
 `;
+
 
 const Title = styled.h3`
   font-size: clamp(2rem, 6vw, 2.5rem);
@@ -56,22 +58,6 @@ const SubTitle = styled.p`
   color: var(--medium-gray);
   position: relative;
   padding-bottom: var(--space-md);
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(
-      90deg,
-      var(--primary-blue) 0%,
-      var(--secondary-blue) 100%
-    );
-    border-radius: 3px;
-  }
 `;
 
 const ResumeTabs = styled.div`
@@ -180,7 +166,7 @@ const TimelineContainer = styled.div`
 `;
 
 const TimelineLine = styled.div`
-  background: var(--light-blue);
+  background: var(--accent-primary);
   width: 2px;
   height: auto;
   min-height: 100%;
@@ -205,12 +191,12 @@ const TimelineItem = styled.div`
   &::before {
     content: '';
     position: absolute;
-    background: var(--light-blue);
+    background: var(--accent-primary);
     width: 12px;
     height: 12px;
     border-radius: 50%;
     z-index: 2;
-    border: 3px solid var(--white);
+    border: 3px solid var(--surface-card);
     box-shadow: 0 2px 10px var(--shadow-light);
     left: 50%;
     top: 50%;
@@ -222,16 +208,17 @@ const TimelineItem = styled.div`
   }
 `;
 
-const ItemInfo = styled.div`
+const ItemInfo = styled(motion.div)`
   position: absolute;
   width: clamp(280px, 42vw, 360px);
   display: flex;
   align-items: center;
   gap: var(--space-lg);
-  background: var(--white);
+  background: var(--surface-card);
   padding: var(--space-lg);
   border-radius: var(--radius-lg);
-  box-shadow: 0 5px 20px var(--shadow-light);
+  border: 1px solid var(--surface-outline);
+  box-shadow: 0 12px 28px var(--shadow-light);
   transition: all 0.3s ease;
   z-index: 1;
 
@@ -247,7 +234,8 @@ const ItemInfo = styled.div`
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px var(--shadow-medium);
+    background: var(--surface-card-hover);
+    box-shadow: 0 16px 32px var(--shadow-medium);
   }
 
   @media (max-width: 992px) {
@@ -259,7 +247,7 @@ const ItemInfo = styled.div`
 `;
 
 const ItemIcon = styled.div`
-  color: var(--light-blue);
+  color: var(--accent-primary);
   font-size: clamp(1.5rem, 4vw, 2.15rem);
   flex-shrink: 0;
 `;
@@ -269,7 +257,7 @@ const ItemContent = styled.div`
 `;
 
 const ItemTitle = styled.h5`
-  color: var(--dark-gray);
+  color: var(--text-primary);
   font-size: clamp(1rem, 2.5vw, 1.13rem);
   font-weight: 600;
   margin-bottom: var(--space-sm);
@@ -277,15 +265,15 @@ const ItemTitle = styled.h5`
 `;
 
 const ItemSubtitle = styled.p`
-  color: var(--medium-gray);
+  color: var(--text-secondary);
   font-size: clamp(0.9rem, 2vw, 1.07rem);
   margin-bottom: var(--space-md);
   line-height: 1.4;
 `;
 
 const ItemDate = styled.span`
-  background: var(--light-blue);
-  color: var(--white);
+  background: var(--chip-bg);
+  color: var(--accent-primary);
   font-size: clamp(0.8rem, 2vw, 0.9rem);
   padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-sm);
@@ -295,9 +283,9 @@ const ItemDate = styled.span`
 const CredentialId = styled.div`
   margin-top: var(--space-sm);
   font-size: 0.8rem;
-  color: var(--medium-gray);
+  color: var(--text-secondary);
   font-family: 'Courier New', monospace;
-  background: var(--light-gray);
+  background: var(--surface-glass);
   padding: var(--space-xs);
   border-radius: var(--radius-sm);
   display: inline-block;
@@ -311,12 +299,17 @@ const SkillsTags = styled.div`
 `;
 
 const SkillTag = styled.span`
-  background: var(--primary-blue);
-  color: var(--white);
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
   font-size: 0.7rem;
   padding: 2px var(--space-xs);
   border-radius: var(--radius-sm);
   font-weight: 500;
+
+  html[data-theme='light'] & {
+    background: rgba(58, 123, 213, 0.12);
+    color: var(--accent-primary);
+  }
 `;
 
 // PDF Viewer Modal Components
@@ -346,12 +339,13 @@ const ModalOverlay = styled.div`
 
 const ModalContainer = styled(motion.div)`
   position: relative;
-  background-color: var(--white);
+  background-color: var(--surface-card);
   border-radius: var(--radius-xl);
   max-width: 90vw;
   max-height: 90vh;
   width: 100%;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 45px var(--shadow-medium);
+  border: 1px solid var(--surface-outline);
   z-index: 1001;
   overflow: hidden;
 `;
@@ -361,14 +355,14 @@ const ModalHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  background: var(--off-white);
-  border-bottom: 1px solid var(--border-gray);
+  background: var(--surface-card-hover);
+  border-bottom: 1px solid var(--surface-outline);
 `;
 
 const ModalTitle = styled.h3`
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--dark-gray);
+  color: var(--text-primary);
   margin: 0;
 `;
 
@@ -390,21 +384,22 @@ const ActionButton = styled.button`
   transition: all 0.3s ease;
 
   &.download {
-    background: var(--primary-blue);
-    color: var(--white);
+    background: var(--accent-gradient);
+    color: #fff;
 
     &:hover {
-      background: var(--hover-blue);
+      filter: brightness(1.05);
     }
   }
 
   &.close {
-    background: var(--light-gray);
-    color: var(--dark-gray);
+    background: var(--surface-card);
+    color: var(--text-primary);
+    border: 1px solid var(--surface-outline);
 
     &:hover {
-      background: var(--medium-gray);
-      color: var(--white);
+      background: var(--surface-card-hover);
+      color: var(--accent-primary);
     }
   }
 `;
@@ -429,8 +424,8 @@ const ViewCertificateButton = styled.button`
   gap: 0.5rem;
   margin-top: var(--space-sm);
   padding: 0.5rem 1rem;
-  background: var(--secondary-blue);
-  color: var(--white);
+  background: var(--accent-gradient);
+  color: #fff;
   border: none;
   border-radius: var(--radius-md);
   font-size: 0.8rem;
@@ -439,7 +434,7 @@ const ViewCertificateButton = styled.button`
   transition: all 0.3s ease;
 
   &:hover {
-    background: var(--primary-blue);
+    filter: brightness(1.05);
     transform: translateY(-1px);
   }
 `;
@@ -465,7 +460,7 @@ const SkillsContainer = styled.div`
 
 const SkillCard = styled.div`
   position: relative;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--accent-gradient);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -475,17 +470,18 @@ const SkillCard = styled.div`
   width: 100%;
   max-width: 420px;
   min-height: 380px;
-  box-shadow: 0 8px 25px var(--shadow-medium);
-  transition: all 0.3s ease;
+  box-shadow: 0 18px 40px rgba(58, 123, 213, 0.35);
+  color: #ffffff;
+  transition: all 0.35s ease;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 35px var(--shadow-dark);
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 26px 55px rgba(58, 123, 213, 0.45);
   }
 
   @media (max-width: 480px) {
     min-height: 320px;
-    padding: var(--space-lg);
+    padding: var(--space-xl);
   }
 `;
 
@@ -498,7 +494,7 @@ const SkillTitle = styled.div`
 
 const SkillIcon = styled.div`
   font-size: clamp(1.5rem, 4vw, 2rem);
-  color: var(--secondary-blue);
+  color: #fff;
 `;
 
 const SkillTitleText = styled.span`
@@ -531,22 +527,40 @@ const Skill = styled.div`
   gap: var(--space-sm);
   padding: var(--space-md);
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease, border 0.3s ease;
   width: 100%;
   min-height: 52px;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.26);
+    border-color: rgba(255, 255, 255, 0.45);
     transform: translateY(-2px);
+  }
+
+  html[data-theme='light'] & {
+    background: var(--surface-card);
+    border: 1px solid var(--surface-outline);
+    color: var(--text-secondary);
+    box-shadow: 0 6px 18px var(--shadow-light);
+
+    &:hover {
+      background: var(--surface-card-hover);
+      border-color: rgba(58, 123, 213, 0.15);
+    }
   }
 `;
 
 const SkillIconSmall = styled.div`
-  color: var(--secondary-blue);
+  color: #ffffff;
   font-size: 1rem;
   flex-shrink: 0;
+
+  html[data-theme='light'] & {
+    color: var(--accent-primary);
+  }
 `;
 
 const SkillInfo = styled.div`
@@ -560,7 +574,7 @@ const SkillInfo = styled.div`
 const SkillName = styled.h5`
   font-size: clamp(0.9rem, 1.8vw, 1rem);
   font-weight: 600;
-  color: var(--white);
+  color: inherit;
   white-space: normal;
   overflow-wrap: anywhere;
 `;
@@ -568,6 +582,10 @@ const SkillName = styled.h5`
 const SkillLevel = styled.span`
   font-size: clamp(0.8rem, 2.5vw, 0.95rem);
   color: rgba(255, 255, 255, 0.8);
+
+  html[data-theme='light'] & {
+    color: var(--text-secondary);
+  }
 `;
 
 const Resume = () => {
@@ -582,7 +600,7 @@ const Resume = () => {
     { id: 'education', label: 'Education', icon: FaGraduationCap },
     { id: 'certifications', label: 'Certifications', icon: FaCertificate },
     { id: 'skills', label: 'Personal Skills', icon: FaUserCog },
-    { id: 'experience', label: 'Experience', icon: FaBriefcase },
+    { id: 'experience', label: 'Resume', icon: FaBriefcase },
   ];
 
   const educationData = [
@@ -730,7 +748,13 @@ const Resume = () => {
       <TimelineLine />
       {educationData.map((item, index) => (
         <TimelineItem key={index}>
-          <ItemInfo className={index % 2 === 0 ? 'left' : 'right'}>
+          <ItemInfo
+            className={index % 2 === 0 ? 'left' : 'right'}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
             <ItemIcon>
               <item.icon />
             </ItemIcon>
@@ -750,7 +774,13 @@ const Resume = () => {
       <TimelineLine />
       {experienceData.map((item, index) => (
         <TimelineItem key={index}>
-          <ItemInfo className={index % 2 === 0 ? 'left' : 'right'}>
+          <ItemInfo
+            className={index % 2 === 0 ? 'left' : 'right'}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
             <ItemIcon>
               <item.icon />
             </ItemIcon>
@@ -788,7 +818,13 @@ const Resume = () => {
       <TimelineLine />
       {certificationsData.map((cert, index) => (
         <TimelineItem key={index}>
-          <ItemInfo className={index % 2 === 0 ? 'left' : 'right'}>
+          <ItemInfo
+            className={index % 2 === 0 ? 'left' : 'right'}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
             <ItemIcon>
               <cert.icon />
             </ItemIcon>
