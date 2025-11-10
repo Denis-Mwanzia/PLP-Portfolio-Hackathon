@@ -216,6 +216,14 @@ export const PROJECTS_DATA = [
       'https://github.com/PLP-MERN-Stack-Development/week-8-capstone_-Denis-Mwanzia.git',
     live: 'https://tukomaji-app.onrender.com/',
     date: 'July 2023',
+  technologies: [
+    'MongoDB',
+    'Express.js',
+    'React',
+    'Node.js',
+    'TypeScript',
+    'Tailwind CSS',
+  ],
   },
   {
     id: 'frontend2',
@@ -272,6 +280,8 @@ export const PROJECTS_DATA = [
     ],
   },
 ];
+
+export const FEATURED_PROJECT_ID = 'fullstack3';
 
 export const ABOUT_SECTIONS = {
   whoIAm: {
