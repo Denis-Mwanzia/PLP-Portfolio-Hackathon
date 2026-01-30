@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://denis-mwanzia-portfolio.netlify.app/sitemap.xml
+Sitemap: https://denismwanzia.netlify.app/sitemap.xml

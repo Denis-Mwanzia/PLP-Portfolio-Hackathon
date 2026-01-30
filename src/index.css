@@ -5,8 +5,7 @@
 /* ================================================
    GLOBAL STYLES AND RESETS
    ================================================ */
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+/* Fonts loaded via <link> in index.html for non-blocking render */
 
 /* CSS Custom Properties for consistent theming */
 :root {
@@ -93,6 +92,14 @@
     --container-lg: 1024px;
     --container-xl: 1280px;
     --container-2xl: 1536px;
+
+    /* Form feedback (theme-aware) */
+    --color-success-bg: #d4edda;
+    --color-success-text: #155724;
+    --color-success-border: #c3e6cb;
+    --color-error-bg: #f8d7da;
+    --color-error-text: #721c24;
+    --color-error-border: #f5c6cb;
 }
 
 /* Dark theme overrides */
@@ -135,6 +142,13 @@
     --shadow-dark: rgba(3, 8, 20, 0.65);
 
     --hero-gradient: linear-gradient(135deg, #050a17 0%, #081124 45%, #050a14 100%);
+
+    --color-success-bg: rgba(16, 185, 129, 0.2);
+    --color-success-text: #6ee7b7;
+    --color-success-border: rgba(16, 185, 129, 0.4);
+    --color-error-bg: rgba(239, 68, 68, 0.2);
+    --color-error-text: #fca5a5;
+    --color-error-border: rgba(239, 68, 68, 0.4);
 }
 
 /* Universal reset */

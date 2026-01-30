@@ -75,21 +75,30 @@ const LoadingSpinner = ({
   width,
   background,
   showText = true,
+  inline = false,
 }) => {
+  const content = (
+    <LoadingContainer>
+      {variant === 'dots' ? (
+        <DotSpinner>
+          <div></div>
+          <div></div>
+          <div></div>
+        </DotSpinner>
+      ) : (
+        <Spinner size={size} />
+      )}
+      {showText && <LoadingText>{text}</LoadingText>}
+    </LoadingContainer>
+  );
+
+  if (inline) {
+    return content;
+  }
+
   return (
     <SpinnerContainer height={height} width={width} background={background}>
-      <LoadingContainer>
-        {variant === 'dots' ? (
-          <DotSpinner>
-            <div></div>
-            <div></div>
-            <div></div>
-          </DotSpinner>
-        ) : (
-          <Spinner size={size} />
-        )}
-        {showText && <LoadingText>{text}</LoadingText>}
-      </LoadingContainer>
+      {content}
     </SpinnerContainer>
   );
 };

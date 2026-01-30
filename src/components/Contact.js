@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import ParallaxShapes from './ParallaxShapes';
 import { useInView } from 'react-intersection-observer';
+import LoadingSpinner from './LoadingSpinner';
 import {
   FaEnvelope,
   FaPhone,
@@ -27,7 +28,6 @@ const SectionTitle = styled.div`
   text-align: center;
   margin-bottom: var(--space-2xl);
 `;
-
 
 const Title = styled.h3`
   font-size: clamp(2rem, 6vw, 2.5rem);
@@ -104,7 +104,8 @@ const ContactItem = styled.div`
   &:hover {
     transform: translateY(-5px) scale(1.02);
     background: var(--surface-card-hover);
-    box-shadow: 0 20px 60px var(--shadow-medium),
+    box-shadow:
+      0 20px 60px var(--shadow-medium),
       0 0 0 1px rgba(59, 130, 246, 0.12);
   }
 
@@ -313,19 +314,19 @@ const FormMessage = styled(motion.div)`
   margin-top: 1rem;
   font-weight: 500;
   &.success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background: var(--color-success-bg);
+    color: var(--color-success-text);
+    border: 1px solid var(--color-success-border);
   }
   &.error {
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background: var(--color-error-bg);
+    color: var(--color-error-text);
+    border: 1px solid var(--color-error-border);
   }
 `;
 
 const FieldError = styled.div`
-  color: #dc3545;
+  color: var(--color-error-text);
   font-size: 0.875rem;
   margin-top: 0.25rem;
 `;
@@ -390,7 +391,13 @@ const Contact = () => {
           type: 'success',
           text: "Message sent successfully! I'll get back to you soon.",
         });
-        setFormData({ name: '', email: '', subject: '', message: '', honeypot: '' });
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          honeypot: '',
+        });
         setTimeout(() => setSubmitMessage(null), 5000);
       } else {
         throw new Error('Formspree submission failed');
@@ -427,8 +434,24 @@ const Contact = () => {
       <Container>
         <ParallaxShapes
           shapes={[
-            { size: '300px', top: '10%', left: '15%', color1: 'rgba(0,119,255,0.18)', color2: 'rgba(0,198,255,0.1)', blur: 42, opacity: 0.2 },
-            { size: '220px', top: '70%', left: '80%', color1: 'rgba(139,92,246,0.18)', color2: 'rgba(59,130,246,0.1)', blur: 38, opacity: 0.18 }
+            {
+              size: '300px',
+              top: '10%',
+              left: '15%',
+              color1: 'rgba(0,119,255,0.18)',
+              color2: 'rgba(0,198,255,0.1)',
+              blur: 42,
+              opacity: 0.2,
+            },
+            {
+              size: '220px',
+              top: '70%',
+              left: '80%',
+              color1: 'rgba(139,92,246,0.18)',
+              color2: 'rgba(59,130,246,0.1)',
+              blur: 38,
+              opacity: 0.18,
+            },
           ]}
           intensity={18}
         />
@@ -496,7 +519,15 @@ const Contact = () => {
                   onChange={handleInputChange}
                   tabIndex={-1}
                   autoComplete="off"
-                  style={{ position: 'absolute', clip: 'rect(0 0 0 0)', height: 1, width: 1, margin: -1, border: 0, padding: 0 }}
+                  style={{
+                    position: 'absolute',
+                    clip: 'rect(0 0 0 0)',
+                    height: 1,
+                    width: 1,
+                    margin: -1,
+                    border: 0,
+                    padding: 0,
+                  }}
                   aria-hidden="true"
                 />
                 <FormGroup>
@@ -509,9 +540,15 @@ const Contact = () => {
                     required
                     aria-required="true"
                     aria-invalid={!!errors.name}
-                    aria-describedby={errors.name ? 'contact-name-error' : undefined}
+                    aria-describedby={
+                      errors.name ? 'contact-name-error' : undefined
+                    }
                   />
-                  {errors.name && <FieldError id="contact-name-error">{errors.name}</FieldError>}
+                  {errors.name && (
+                    <FieldError id="contact-name-error">
+                      {errors.name}
+                    </FieldError>
+                  )}
                 </FormGroup>
                 <FormGroup>
                   <FormInput
@@ -523,9 +560,15 @@ const Contact = () => {
                     required
                     aria-required="true"
                     aria-invalid={!!errors.email}
-                    aria-describedby={errors.email ? 'contact-email-error' : undefined}
+                    aria-describedby={
+                      errors.email ? 'contact-email-error' : undefined
+                    }
                   />
-                  {errors.email && <FieldError id="contact-email-error">{errors.email}</FieldError>}
+                  {errors.email && (
+                    <FieldError id="contact-email-error">
+                      {errors.email}
+                    </FieldError>
+                  )}
                 </FormGroup>
                 <FormGroup>
                   <FormInput
@@ -545,9 +588,15 @@ const Contact = () => {
                     required
                     aria-required="true"
                     aria-invalid={!!errors.message}
-                    aria-describedby={errors.message ? 'contact-message-error' : undefined}
+                    aria-describedby={
+                      errors.message ? 'contact-message-error' : undefined
+                    }
                   />
-                  {errors.message && <FieldError id="contact-message-error">{errors.message}</FieldError>}
+                  {errors.message && (
+                    <FieldError id="contact-message-error">
+                      {errors.message}
+                    </FieldError>
+                  )}
                 </FormGroup>
                 <SubmitButton
                   type="submit"
@@ -561,8 +610,17 @@ const Contact = () => {
                       : {}
                   }
                 >
-                  <FaPaperPlane />{' '}
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? (
+                    <>
+                      <LoadingSpinner variant="dots" showText={false} inline />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <FaPaperPlane />
+                      <span>Send Message</span>
+                    </>
+                  )}
                 </SubmitButton>
                 <AnimatePresence>
                   {submitMessage && (

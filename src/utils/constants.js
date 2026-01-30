@@ -1,4 +1,11 @@
 // Portfolio data and constants
+
+/** Single canonical base URL for SEO, Open Graph, and JSON-LD. Set via VITE_SITE_URL or fallback. */
+export const SITE_BASE_URL =
+  (typeof import.meta !== 'undefined' &&
+    import.meta.env?.VITE_SITE_URL?.replace?.(/\/$/, '')) ||
+  'https://denismwanzia.netlify.app';
+
 export const PERSONAL_INFO = {
   name: 'Denis Mwanzia',
   title: 'Full-Stack Developer & IT Specialist',
@@ -41,34 +48,15 @@ export const RESUME_TABS = [
 
 export const EDUCATION_DATA = [
   {
-    title: 'Bachelor Of Science in Information Technology',
+    title: 'Bachelor of Science in Information Technology',
     subtitle: 'Kabarak University',
-    date: '2017-2023',
+    date: '2017–2023',
     icon: 'FaGraduationCap',
   },
   {
-    title: 'SQL Training Certificate',
-    subtitle: 'Learnomate Technologies Pvt Ltd',
-    date: '2024-2024',
-    icon: 'FaGraduationCap',
-  },
-  {
-    title:
-      'Cybersecurity and Emerging Technologies Awareness Training Certificate',
-    subtitle: 'ICT Authority Smart Academy',
-    date: '2024-2024',
-    icon: 'FaGraduationCap',
-  },
-  {
-    title: 'Software Development',
+    title: 'Software Development — Full-Stack (MERN)',
     subtitle: 'Power Learn Project Academy',
-    date: '2025-Present',
-    icon: 'FaGraduationCap',
-  },
-  {
-    title: 'AI Literacy Certified Course',
-    subtitle: 'Otermans Institute',
-    date: '2025-2025',
+    date: '2025–Present',
     icon: 'FaGraduationCap',
   },
 ];
@@ -129,6 +117,28 @@ export const CERTIFICATIONS_DATA = [
     pdfUrl: '/assets/certificates/OIAI25-ER35KX.pdf',
     description:
       'Comprehensive AI literacy program covering artificial intelligence fundamentals, machine learning concepts, and AI ethics in modern technology.',
+  },
+  {
+    title: 'BwAI Certificate of Completion',
+    subtitle: 'Unstacked Labs',
+    date: '2025',
+    icon: 'FaCertificate',
+    issuer: 'Unstacked Labs',
+    skills: ['AI', 'Building with AI', 'Practical AI Applications'],
+    pdfUrl: '/assets/certificates/unstacked-labs-bwai-certificate.pdf',
+    description:
+      'Certificate of completion for the Unstacked Labs BwAI (Building with AI) program, covering practical AI integration and applications.',
+  },
+  {
+    title: 'Cloud Infrastructure and Services',
+    subtitle: 'Cloud Infrastructure Training',
+    date: '2025',
+    icon: 'FaCertificate',
+    issuer: 'Cloud Infrastructure Training',
+    skills: ['Cloud Computing', 'Infrastructure', 'Cloud Services'],
+    pdfUrl: '/assets/certificates/cloud-infrastructure-and-services.pdf',
+    description:
+      'Training in cloud infrastructure and services, covering deployment, management, and best practices for cloud-based solutions.',
   },
 ];
 
@@ -216,14 +226,14 @@ export const PROJECTS_DATA = [
       'https://github.com/PLP-MERN-Stack-Development/week-8-capstone_-Denis-Mwanzia.git',
     live: 'https://tukomaji-app.onrender.com/',
     date: 'July 2023',
-  technologies: [
-    'MongoDB',
-    'Express.js',
-    'React',
-    'Node.js',
-    'TypeScript',
-    'Tailwind CSS',
-  ],
+    technologies: [
+      'MongoDB',
+      'Express.js',
+      'React',
+      'Node.js',
+      'TypeScript',
+      'Tailwind CSS',
+    ],
   },
   {
     id: 'frontend2',
@@ -241,27 +251,6 @@ export const PROJECTS_DATA = [
     id: 'fullstack3',
     title: 'Kitui Reforest AI',
     category: 'fullstack',
-    description:
-      'A comprehensive environmental restoration platform for Kitui County featuring AI-powered species recommendations, GIS mapping with NDVI analysis, real-time weather integration, and community engagement tools. Built for the Land ReGen Hackathon 2025 with advanced climate intelligence and collaborative project tracking.',
-    image: '/assets/kitui_AI.png',
-    github: 'https://github.com/Denis-Mwanzia/LandReGenHackathon2025.git',
-    live: 'https://kitui-reforest-ai.onrender.com/',
-    date: 'October 2025',
-    technologies: [
-      'React',
-      'TypeScript',
-      'Tailwind CSS',
-      'Supabase',
-      'Leaflet Maps',
-      'AI Integration',
-      'OpenWeather API',
-      'PostgreSQL',
-    ],
-  },
-  {
-    id: 'ai2',
-    title: 'Kitui Reforest AI',
-    category: 'ai',
     description:
       'A comprehensive environmental restoration platform for Kitui County featuring AI-powered species recommendations, GIS mapping with NDVI analysis, real-time weather integration, and community engagement tools. Built for the Land ReGen Hackathon 2025 with advanced climate intelligence and collaborative project tracking.',
     image: '/assets/kitui_AI.png',

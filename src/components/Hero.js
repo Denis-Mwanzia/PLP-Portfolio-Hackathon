@@ -22,7 +22,7 @@ const HeroSection = styled.section`
   overflow: hidden;
 
   /* Dark theme override */
-  [data-theme="dark"] & {
+  [data-theme='dark'] & {
     background: var(--hero-gradient);
   }
 
@@ -30,7 +30,8 @@ const HeroSection = styled.section`
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(
+    background:
+      radial-gradient(
         circle at 20% 20%,
         rgba(59, 130, 246, 0.08),
         transparent 50%
@@ -56,14 +57,24 @@ const HeroSection = styled.section`
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 70%
+    );
     animation: shimmer 3s ease-in-out infinite;
     z-index: 1;
   }
 
   /* Subtle shimmer in dark mode */
-  [data-theme="dark"] &::after {
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.04) 50%, transparent 70%);
+  [data-theme='dark'] &::after {
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.04) 50%,
+      transparent 70%
+    );
   }
 
   /* Spotlight cursor */
@@ -242,7 +253,11 @@ const HeroSubtitle = styled.p`
   min-height: auto;
 
   .accent {
-    background: linear-gradient(120deg, var(--accent-primary), var(--accent-secondary));
+    background: linear-gradient(
+      120deg,
+      var(--accent-primary),
+      var(--accent-secondary)
+    );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -296,7 +311,9 @@ const Button = styled.a`
   position: relative;
   text-decoration: none;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-3px);
@@ -350,7 +367,7 @@ const SecondaryButton = styled(Button)`
   border: 2px solid transparent;
 
   &:hover::after {
-    opacity: 0.2;
+    background: rgba(255, 255, 255, 0.2);
     opacity: 1;
   }
 `;
@@ -372,7 +389,9 @@ const SocialLink = styled.a`
   background: var(--surface-card);
   box-shadow: 0 2px 12px var(--shadow-light);
   color: var(--accent-primary);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:hover {
     transform: scale(1.1);
@@ -422,7 +441,6 @@ const Badge = styled(motion.span)`
     border-color: rgba(108, 149, 255, 0.28);
   }
 `;
-
 
 const StatsGrid = styled.div`
   margin-top: clamp(1.1rem, 3.2vw, 1.9rem);
@@ -680,8 +698,8 @@ const Hero = () => {
         </FloatingIcon>
       ))}
       <HeroContainer>
-          <ProfileContainer>
-            <ProfileBorder>
+        <ProfileContainer>
+          <ProfileBorder>
             <ProfileImage
               src="/assets/passport.jpg"
               alt="Denis Mwanzia portrait"
@@ -690,8 +708,8 @@ const Hero = () => {
               decoding="async"
               fetchpriority="high"
             />
-            </ProfileBorder>
-          </ProfileContainer>
+          </ProfileBorder>
+        </ProfileContainer>
 
         <HeroContent>
           <motion.div
@@ -706,16 +724,26 @@ const Hero = () => {
             </HeroTitle>
             <HeroSubtitle>
               Full-stack developer turning ideas into{' '}
-              <span className="accent">fast, inclusive, production-grade</span> products.
+              <span className="accent">fast, inclusive, production-grade</span>{' '}
+              products.
             </HeroSubtitle>
             <HeroNarrative>
-              Focused on <strong>developer velocity</strong>, <strong>experience design</strong>, and resilient releases that make a measurable dent.
+              Focused on <strong>developer velocity</strong>,{' '}
+              <strong>experience design</strong>, and resilient releases that
+              make a measurable dent.
             </HeroNarrative>
             <HeroActions>
-              <PrimaryButton href="/assets/resume.pdf" download>
+              <PrimaryButton
+                href="/assets/resume.pdf"
+                download
+                aria-label="Download CV (PDF)"
+              >
                 <FaDownload /> Download CV
               </PrimaryButton>
-              <SecondaryButton href="#contact">
+              <SecondaryButton
+                href="#contact"
+                aria-label="Go to contact section"
+              >
                 🚀 Let's Connect
               </SecondaryButton>
             </HeroActions>
@@ -724,12 +752,16 @@ const Hero = () => {
               <SocialLink
                 href="https://www.linkedin.com/in/denis-mwanzia"
                 target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
               >
                 <FaLinkedin size={20} />
               </SocialLink>
               <SocialLink
                 href="https://github.com/Denis-Mwanzia"
                 target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
               >
                 <FaGithub size={20} />
               </SocialLink>
@@ -768,7 +800,6 @@ denis.launch({ day: 'Today', focus: 'Developer Experience' });`}
           </motion.div>
         </HeroContent>
       </HeroContainer>
-
     </HeroSection>
   );
 };

@@ -62,8 +62,6 @@ const Title = styled.h3`
   }
 `;
 
-
-
 const CardsWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -78,7 +76,10 @@ const Card = styled(motion.div)`
   box-shadow: 0 12px 28px var(--shadow-light);
   border: 1px solid var(--surface-outline);
   text-align: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
   cursor: default;
 
   &:hover {
@@ -131,17 +132,33 @@ const FadeMask = styled.div`
 
   &::before {
     left: 0;
-    background: linear-gradient(90deg, var(--section-surface), rgba(255, 255, 255, 0));
+    background: linear-gradient(
+      90deg,
+      var(--section-surface),
+      rgba(255, 255, 255, 0)
+    );
     [data-theme='dark'] & {
-      background: linear-gradient(90deg, rgba(9, 16, 32, 1), rgba(9, 16, 32, 0));
+      background: linear-gradient(
+        90deg,
+        rgba(9, 16, 32, 1),
+        rgba(9, 16, 32, 0)
+      );
     }
   }
 
   &::after {
     right: 0;
-    background: linear-gradient(-90deg, var(--section-surface), rgba(255, 255, 255, 0));
+    background: linear-gradient(
+      -90deg,
+      var(--section-surface),
+      rgba(255, 255, 255, 0)
+    );
     [data-theme='dark'] & {
-      background: linear-gradient(-90deg, rgba(9, 16, 32, 1), rgba(9, 16, 32, 0));
+      background: linear-gradient(
+        -90deg,
+        rgba(9, 16, 32, 1),
+        rgba(9, 16, 32, 0)
+      );
     }
   }
 `;
@@ -278,9 +295,33 @@ const About = () => {
     <AboutSection id="about">
       <ParallaxShapes
         shapes={[
-          { size: '240px', top: '5%', left: '10%', color1: 'rgba(0,119,255,0.25)', color2: 'rgba(0,198,255,0.12)', blur: 40, opacity: 0.25 },
-          { size: '320px', top: '60%', left: '75%', color1: 'rgba(16,185,129,0.22)', color2: 'rgba(0,119,255,0.12)', blur: 50, opacity: 0.22 },
-          { size: '180px', top: '75%', left: '15%', color1: 'rgba(139,92,246,0.25)', color2: 'rgba(59,130,246,0.12)', blur: 38, opacity: 0.22 }
+          {
+            size: '240px',
+            top: '5%',
+            left: '10%',
+            color1: 'rgba(0,119,255,0.25)',
+            color2: 'rgba(0,198,255,0.12)',
+            blur: 40,
+            opacity: 0.25,
+          },
+          {
+            size: '320px',
+            top: '60%',
+            left: '75%',
+            color1: 'rgba(16,185,129,0.22)',
+            color2: 'rgba(0,119,255,0.12)',
+            blur: 50,
+            opacity: 0.22,
+          },
+          {
+            size: '180px',
+            top: '75%',
+            left: '15%',
+            color1: 'rgba(139,92,246,0.25)',
+            color2: 'rgba(59,130,246,0.12)',
+            blur: 38,
+            opacity: 0.22,
+          },
         ]}
         intensity={26}
       />
@@ -342,30 +383,34 @@ const About = () => {
         </CardsWrapper>
 
         {/* Tech Stack Showcase */}
-          <TechShowcase>
-            {marqueeSets.map(({ icons, reverse, duration }, rowIndex) => {
-              const loopIcons = [...icons, ...icons];
-              return (
-                <FadeMask key={rowIndex} aria-hidden="false">
-                  <TechRow $reverse={reverse} $duration={duration}>
-                    {loopIcons.map(({ Icon, label }, i) => (
-                      <IconBubble
-                        key={`${label}-${i}`}
-                        whileHover={{ scale: 1.15, rotate: reverse ? -1.5 : 1.5 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-                      >
-                        <IconGlyph aria-hidden="true">
-                          <Icon />
-                        </IconGlyph>
-                        <IconLabel>{label}</IconLabel>
-                      </IconBubble>
-                    ))}
-                  </TechRow>
-                </FadeMask>
-              );
-            })}
-          </TechShowcase>
+        <TechShowcase>
+          {marqueeSets.map(({ icons, reverse, duration }, rowIndex) => {
+            const loopIcons = [...icons, ...icons];
+            return (
+              <FadeMask key={rowIndex} aria-hidden="true">
+                <TechRow $reverse={reverse} $duration={duration}>
+                  {loopIcons.map(({ Icon, label }, i) => (
+                    <IconBubble
+                      key={`${label}-${i}`}
+                      whileHover={{ scale: 1.15, rotate: reverse ? -1.5 : 1.5 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 260,
+                        damping: 18,
+                      }}
+                    >
+                      <IconGlyph aria-hidden="true">
+                        <Icon />
+                      </IconGlyph>
+                      <IconLabel>{label}</IconLabel>
+                    </IconBubble>
+                  ))}
+                </TechRow>
+              </FadeMask>
+            );
+          })}
+        </TechShowcase>
       </Container>
     </AboutSection>
   );

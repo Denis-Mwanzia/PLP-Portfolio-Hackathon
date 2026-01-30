@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 
 const ImageContainer = styled.div`
@@ -52,9 +52,15 @@ const LazyImageComponent = ({
 }) => {
   const [loaded, setLoaded] = useState(false);
   const [inView, setInView] = useState(false);
-  const imgRef = useRef();
+  const [containerEl, setContainerEl] = useState(null);
+
+  const refCallback = useCallback((node) => {
+    setContainerEl(node);
+  }, []);
 
   useEffect(() => {
+    if (!containerEl) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -62,22 +68,19 @@ const LazyImageComponent = ({
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
-    }
-
+    observer.observe(containerEl);
     return () => observer.disconnect();
-  }, []);
+  }, [containerEl]);
 
   const handleLoad = () => {
     setLoaded(true);
   };
 
   return (
-    <ImageContainer ref={imgRef} minHeight={minHeight} {...props}>
+    <ImageContainer ref={refCallback} minHeight={minHeight} {...props}>
       {!loaded && <Placeholder />}
       {inView && (
         <LazyImage

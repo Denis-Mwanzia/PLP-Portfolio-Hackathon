@@ -26,7 +26,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --strictPort",
-    "test": "react-scripts test"
+    "test": "echo \"No tests configured. Add Vitest for Vite.\" && exit 0"
   },
   "eslintConfig": {
     "extends": [

@@ -43,3 +43,6 @@ pids
 Thumbs.db
 # Local Netlify folder
 .netlify
+
+# Windows reserved name artifact
+nul

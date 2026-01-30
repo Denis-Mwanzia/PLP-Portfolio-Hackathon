@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
   background-color: var(--dark-blue);
@@ -146,18 +146,6 @@ const Footer = () => {
       href: 'https://www.linkedin.com/in/denis-mwanzia',
       label: 'LinkedIn',
     },
-    {
-      id: 'twitter',
-      icon: FaTwitter,
-      href: '#',
-      label: 'Twitter',
-    },
-    {
-      id: 'instagram',
-      icon: FaInstagram,
-      href: '#',
-      label: 'Instagram',
-    },
   ];
 
   const handleLinkClick = (e, href) => {
@@ -191,9 +179,9 @@ const Footer = () => {
                 <FooterTitle>Denis Mwanzia</FooterTitle>
                 <FooterDescription>
                   Full‑stack developer focused on scalable, accessible web apps.
-                  Experienced across web based applications, AI‑assisted features, and
-                  internal tools. Pragmatic about performance, DX and
-                  maintainability.
+                  Experienced across web based applications, AI‑assisted
+                  features, and internal tools. Pragmatic about performance, DX
+                  and maintainability.
                 </FooterDescription>
                 <SocialLinks>
                   {socialLinks.map((link) => (

@@ -35,7 +35,6 @@ const SectionTitle = styled.div`
   margin-bottom: var(--space-2xl);
 `;
 
-
 const Title = styled.h3`
   font-size: clamp(2rem, 6vw, 2.5rem);
   font-weight: 800;
@@ -530,7 +529,9 @@ const Skill = styled.div`
   background: rgba(255, 255, 255, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(12px);
-  transition: all 0.3s ease, border 0.3s ease;
+  transition:
+    all 0.3s ease,
+    border 0.3s ease;
   width: 100%;
   min-height: 52px;
 
@@ -605,34 +606,15 @@ const Resume = () => {
 
   const educationData = [
     {
-      title: 'Bachelor Of Science in Information Technology',
+      title: 'Bachelor of Science in Information Technology',
       subtitle: 'Kabarak University',
-      date: '2017-2023',
+      date: '2017–2023',
       icon: FaGraduationCap,
     },
     {
-      title: 'SQL Training Certificate',
-      subtitle: 'Learnomate Technologies Pvt Ltd',
-      date: '2024-2024',
-      icon: FaGraduationCap,
-    },
-    {
-      title:
-        'Cybersecurity and Emerging Technologies Awareness Training Certificate',
-      subtitle: 'ICT Authority Smart Academy',
-      date: '2024-2024',
-      icon: FaGraduationCap,
-    },
-    {
-      title: 'Software Development',
+      title: 'Software Development — Full-Stack (MERN)',
       subtitle: 'Power Learn Project Academy',
-      date: '2025-Present',
-      icon: FaGraduationCap,
-    },
-    {
-      title: 'AI Literacy Certified Course',
-      subtitle: 'Otermans Institute',
-      date: '2025-2025',
+      date: '2025–Present',
       icon: FaGraduationCap,
     },
   ];
@@ -700,7 +682,14 @@ const Resume = () => {
       date: '2025',
       icon: FaCertificate,
       issuer: 'Power Learn Project Academy',
-      skills: ['React', 'Node.js', 'MongoDB', 'Express', 'REST APIs', 'DevOps Fundamentals'],
+      skills: [
+        'React',
+        'Node.js',
+        'MongoDB',
+        'Express',
+        'REST APIs',
+        'DevOps Fundamentals',
+      ],
       pdfUrl:
         '/assets/certificates/denis%20Full-Stack%20Development%20MERN%20Stack%20certificate.pdf',
       description:
@@ -712,10 +701,41 @@ const Resume = () => {
       date: '2024',
       icon: FaCertificate,
       issuer: 'ICT Authority Kenya',
-      skills: ['ICT Infrastructure', 'Networking', 'Digital Transformation', 'Professional Development'],
+      skills: [
+        'ICT Infrastructure',
+        'Networking',
+        'Digital Transformation',
+        'Professional Development',
+      ],
       pdfUrl: '/assets/certificates/ICT%20Graduate.pdf',
       description:
         'Professional certification from the ICT Authority graduate program covering enterprise ICT infrastructure, support operations, and digital transformation initiatives.',
+    },
+    {
+      title: 'Generative AI',
+      subtitle: 'Unstacked Labs',
+      date: '2025',
+      icon: FaCertificate,
+      issuer: 'Unstacked Labs',
+      skills: [
+        'Google Generative AI(Genkit, ADK and Vertex AI)',
+        'Building with AI',
+        'Practical AI Applications',
+      ],
+      pdfUrl: '/assets/certificates/unstacked-labs-bwai-certificate.pdf',
+      description:
+        'Certificate of completion for the Unstacked Labs BwAI (Building with AI) program, covering Google ADK, Genkit and Vertex AI.',
+    },
+    {
+      title: 'Cloud Infrastructure and Services',
+      subtitle: 'Cloud Infrastructure Training',
+      date: '2025',
+      icon: FaCertificate,
+      issuer: 'Cloud Infrastructure Training',
+      skills: ['Cloud Computing', 'Infrastructure', 'Cloud Services'],
+      pdfUrl: '/assets/certificates/cloud-infrastructure-and-services.pdf',
+      description:
+        'Training in cloud infrastructure and services(AWS), covering deployment, management, and best practices for cloud-based solutions.',
     },
   ];
 
@@ -921,10 +941,14 @@ const Resume = () => {
           <SubTitle>Combination of Education, Experience & Skills</SubTitle>
         </SectionTitle>
 
-        <ResumeTabs>
+        <ResumeTabs role="tablist" aria-label="Resume sections">
           {tabs.map((tab, index) => (
             <TabButton
               key={tab.id}
+              role="tab"
+              id={`resume-tab-${tab.id}`}
+              aria-selected={activeTab === index}
+              aria-controls={`resume-tabpanel-${tab.id}`}
               className={activeTab === index ? 'active' : ''}
               onClick={() => setActiveTab(index)}
             >
@@ -934,7 +958,12 @@ const Resume = () => {
           ))}
         </ResumeTabs>
 
-        <TabContent ref={ref}>
+        <TabContent
+          ref={ref}
+          role="tabpanel"
+          id={`resume-tabpanel-${tabs[activeTab]?.id}`}
+          aria-labelledby={`resume-tab-${tabs[activeTab]?.id}`}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}

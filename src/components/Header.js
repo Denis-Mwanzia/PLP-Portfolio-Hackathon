@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
+import { NAVIGATION_ITEMS } from '../utils/constants';
+import { throttle } from '../utils/performance';
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -14,7 +16,10 @@ const HeaderContainer = styled.header`
   background: var(--white);
   backdrop-filter: blur(10px);
   z-index: 1000;
-  box-shadow: ${(p) => (p.$scrolled ? '0 4px 24px var(--shadow-medium)' : '0 2px 20px var(--shadow-light)')};
+  box-shadow: ${(p) =>
+    p.$scrolled
+      ? '0 4px 24px var(--shadow-medium)'
+      : '0 2px 20px var(--shadow-light)'};
   transition: all 0.3s ease;
 `;
 
@@ -259,13 +264,8 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'resume', label: 'Resume' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
-  ];
+  const navItems = NAVIGATION_ITEMS;
+  const SCROLL_THROTTLE_MS = 100;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -289,9 +289,10 @@ const Header = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const throttledHandleScroll = throttle(handleScroll, SCROLL_THROTTLE_MS);
+    window.addEventListener('scroll', throttledHandleScroll);
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
+  }, [navItems]);
 
   const toggleMobileNav = () => {
     setIsMobileNavOpen((open) => !open);
@@ -338,7 +339,8 @@ const Header = () => {
       if (!navEl) return;
 
       // Prevent page from shifting horizontally when menu opens
-      const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+      const currentScrollTop =
+        window.scrollY || document.documentElement.scrollTop;
       window.scrollTo({ top: currentScrollTop, left: 0, behavior: 'auto' });
       document.documentElement.scrollLeft = 0;
       document.body.scrollLeft = 0;
@@ -481,7 +483,11 @@ const Header = () => {
                   aria-label={`Activate ${theme === 'light' ? 'dark' : 'light'} theme`}
                   title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                 >
-                  {theme === 'light' ? <FaMoon size={16} /> : <FaSun size={16} />}
+                  {theme === 'light' ? (
+                    <FaMoon size={16} />
+                  ) : (
+                    <FaSun size={16} />
+                  )}
                 </MobileThemeToggle>
               </MobileMenuFooter>
             </MobileNav>
