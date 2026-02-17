@@ -46,3 +46,4 @@ Thumbs.db
 
 # Windows reserved name artifact
 nul
+.env
