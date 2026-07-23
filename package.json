@@ -6,9 +6,6 @@
   "private": true,
   "dependencies": {
     "@formspree/react": "^3.0.0",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
     "framer-motion": "^7.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -17,22 +14,14 @@
     "react-intersection-observer": "^9.4.1",
     "react-is": "^18.3.1",
     "react-parallax-tilt": "^1.7.307",
-    "react-scripts": "^0.0.0",
     "styled-components": "^5.3.5",
-    "typewriter-effect": "^2.22.0",
-    "web-vitals": "^2.1.4"
+    "typewriter-effect": "^2.22.0"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --strictPort",
     "test": "echo \"No tests configured. Add Vitest for Vite.\" && exit 0"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
